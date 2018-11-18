@@ -1,4 +1,5 @@
 const pkg = require('./package')
+const ids = require('./keys')
 
 module.exports = {
   mode: 'universal',
@@ -35,7 +36,12 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/vuetify'
+    '@/plugins/vuetify',
+    {
+      src: '@/plugins/firebase',
+      ssr: false
+    },
+    '@/plugins/filteredDate'
   ],
 
   /*
@@ -49,6 +55,8 @@ module.exports = {
   ** Axios module configuration
   */
   axios: {
+    baseURL: process.env.BASE_URL || 'https://adminsource-82a9f.firebaseio.com',
+    credentials: false
     // See https://github.com/nuxt-community/axios-module#options
   },
 
@@ -70,5 +78,10 @@ module.exports = {
         })
       }
     }
+  },
+  env : {
+    defaultp: 'convergeIT123',
+    host: ids.host
+
   }
 }
