@@ -214,14 +214,16 @@ import agenthalfpay from '@/components/admin/agent/payment/half'
 import firebase from 'firebase'
 import firebaseConfig from '@/plugins/configFirebase'
   export default {
-    created(){
-      this.$store.dispatch('admin/loadData')
-      .catch(e => {
-        this.text = e.message
-        this.snackbar = true
-      })
-    },
     layout: 'admin',
+    components: {
+      orderDash,
+      orderList,
+      clientList,
+      payfull,
+      payhalf,
+      agentfullpay,
+      agenthalfpay
+    },
     async asyncData(){
       if (!firebase.apps.length){
         await firebase.initializeApp(firebaseConfig)
@@ -230,6 +232,26 @@ import firebaseConfig from '@/plugins/configFirebase'
              store.commit('setUser', user)
            }
          })
+      }
+    },
+    data () {
+      return {
+        lAgent: null,
+        snackbar: false,
+        text: '',
+        timeout: 6000,
+        active: null,
+        heads: [
+          {title: 'Order'},
+          {title: 'Clients'},
+          {title: 'Full Payments'},
+          {title: 'Half Payments'}
+        ],
+        primaryhead: [
+          {title: 'Confirmed Quotation'},
+          {title: 'Payments'}
+        ],
+        primary: null
       }
     },
     computed: {
@@ -260,25 +282,12 @@ import firebaseConfig from '@/plugins/configFirebase'
         this.$store.dispatch('admin/fetchAgentid', val)
       }
     },
-    data () {
-      return {
-        lAgent: null,
-        snackbar: false,
-        text: '',
-        timeout: 6000,
-        active: null,
-        heads: [
-          {title: 'Order'},
-          {title: 'Clients'},
-          {title: 'Full Payments'},
-          {title: 'Half Payments'}
-        ],
-        primaryhead: [
-          {title: 'Confirmed Quotation'},
-          {title: 'Payments'}
-        ],
-        primary: null
-      }
+    created(){
+      this.$store.dispatch('admin/loadData')
+      .catch(e => {
+        this.text = e.message
+        this.snackbar = true
+      })
     },
     methods: {
       next () {
@@ -297,15 +306,6 @@ import firebaseConfig from '@/plugins/configFirebase'
       detailhalfpay(val){
         return this.$router.push('/admin/agent/payment/half/' + val)
       }
-    },
-    components: {
-      orderDash,
-      orderList,
-      clientList,
-      payfull,
-      payhalf,
-      agentfullpay,
-      agenthalfpay
     }
   }
 </script>

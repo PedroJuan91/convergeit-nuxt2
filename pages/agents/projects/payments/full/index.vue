@@ -22,7 +22,16 @@
 import fullpay from '@/components/agent/projects/fullpayinfo'
 import {mapGetters} from 'vuex'
 export default {
+  components: {
+    fullpay
+  },
   layout: 'agentpayments',
+  data(){
+    return {
+      label: 'Search in Full Payments',
+      searchInput: ''
+    }
+  },
   computed: {
     ...mapGetters({
       payorder: 'render/fullPayOrder',
@@ -33,15 +42,6 @@ export default {
         return item.ordnameto.match(this.searchInput)
       })
      }
-  },
-  components: {
-    fullpay
-  },
-  data(){
-    return {
-      label: 'Search in Full Payments',
-      searchInput: ''
-    }
   },
   methods: {
     backHome(){

@@ -24,6 +24,15 @@ import {mapState, mapGetters} from 'vuex'
 import orderCard from '@/components/agent/order/fullorder'
 export default {
   layout: 'orderview',
+  components: {
+    orderCard
+  },
+  data(){
+    return {
+      label: 'Search for orders',
+      searchInput: ''
+    }
+  },
   computed: {
     ...mapState({
       user: 'user'
@@ -35,15 +44,6 @@ export default {
       return this.theItem.filter((item) => {
         return item.ordnameto.match(this.searchInput)
       })
-    }
-  },
-  components: {
-    orderCard
-  },
-  data(){
-    return {
-      label: 'Search for orders',
-      searchInput: ''
     }
   },
   methods: {

@@ -26,6 +26,12 @@ export default {
   components: {
     fullpay
   },
+  data(){
+    return {
+      label: 'Search for Half Payments',
+      searchInput: ''
+    }
+  },
   computed: {
     ...mapGetters({
       itemslen: 'render/halfPayOrderlen',
@@ -35,12 +41,6 @@ export default {
       return this.item.filter((item) => {
         return item.ordnameto.match(this.searchInput)
       })
-    }
-  },
-  data(){
-    return {
-      label: 'Search for Half Payments',
-      searchInput: ''
     }
   },
   methods: {

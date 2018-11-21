@@ -151,6 +151,9 @@ import {mapState, mapGetters} from 'vuex'
 import productItems from '@/components/agent/order/productitems'
 export default {
   layout: 'orderview',
+  components: {
+    productItems
+  },
   data(){
     return {
         timeout: 6000,
@@ -213,9 +216,6 @@ export default {
     editMe(){
       return this.$router.push('/agents/orders/edit/' + this.$route.params.id)
     }
-  },
-  components: {
-    productItems
   }
 }
 </script>

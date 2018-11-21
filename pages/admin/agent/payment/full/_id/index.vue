@@ -37,10 +37,9 @@
 import listing from '@/components/admin/agent/payment/fullview/full'
 import {mapGetters} from 'vuex'
 export default {
-  async asyncData({store, params, route}){
-    store.dispatch('admin/loadfullpaymentorder', params.id)
-  },
-  layout: 'adminPayments',
+    components: {
+      listing
+    },
   data(){
     return {
       snackbar: false,
@@ -59,16 +58,16 @@ export default {
         return item.ordnameto.match(this.searchInput)
       })
     }
-
-  },
-  components: {
-    listing
   },
   methods: {
     backhome(){
       return this.$router.push('/admin/')
     }
-  }
+  },
+  layout: 'adminPayments',
+  async asyncData({store, params, route}){
+    store.dispatch('admin/loadfullpaymentorder', params.id)
+  },
 
 }
 </script>

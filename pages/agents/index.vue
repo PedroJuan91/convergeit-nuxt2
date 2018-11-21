@@ -61,6 +61,28 @@ import {mapState, mapGetters} from 'vuex'
 import clientDash from '@/components/agent/dashboardClient'
 import orderDash from '@/components/agent/dashboardOrder'
 export default {
+  components: {
+    clientDash,
+    orderDash
+  },
+  data() {
+    return {
+      timeout: 6000,
+      snackbar: false,
+      text: ''
+    }
+  },
+  computed: {
+    ...mapState({
+      user: 'user'
+    }),
+    ...mapGetters('render',{
+      clients: 'listedClient',
+      order: 'listedOrder',
+      listedClient: 'featuredClients',
+      listedOrder: 'featuredOrder'
+    })
+  },
   created() {
     //do something before mounting vue instance
     this.$store.dispatch('theLoaders')
@@ -75,28 +97,6 @@ export default {
         this.$router.push('/public/vendor.bundle.00f8a7a6911fb6e55d16.js')
         })
   },
-  components: {
-    clientDash,
-    orderDash
-  },
-  data() {
-    return {
-      timeout: 6000,
-      snackbar: false,
-      text: ''
-    }
-  },
   layout: 'agent',
-  computed: {
-    ...mapState({
-      user: 'user'
-    }),
-    ...mapGetters('render',{
-      clients: 'listedClient',
-      order: 'listedOrder',
-      listedClient: 'featuredClients',
-      listedOrder: 'featuredOrder'
-    })
-  }
 }
 </script>

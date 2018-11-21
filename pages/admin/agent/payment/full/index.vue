@@ -27,6 +27,15 @@ import fullview from '@/components/admin/agent/payment/fullview/full'
 import {mapGetters} from 'vuex'
 export default {
   layout: 'adminPayments',
+  components: {
+    fullview
+  },
+  data(){
+    return {
+      searchInput: '',
+      label: 'Search Payment Info'
+    }
+  },
   computed: {
     ...mapGetters({
       listing: 'admin/mergefullPayOrder'
@@ -35,15 +44,6 @@ export default {
       return this.listing.filter((item) => {
         return item.ordnameto.match(this.searchInput)
       })
-    }
-  },
-  components: {
-    fullview
-  },
-  data(){
-    return {
-      searchInput: '',
-      label: 'Search Payment Info'
     }
   },
   methods: {

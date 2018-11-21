@@ -107,6 +107,18 @@ export default {
     drawerEnter,
     checkoutCounter
   },
+  data(){
+    return {
+      label:'Search ordered product',
+      clientOrder: {},
+      timeout: 6000,
+      text: '',
+      snackbar: false,
+      date: new Date(),
+      time: new Date(),
+      totalAmount: 0
+    }
+  },
   computed: {
     ...mapGetters('order', {
       items: 'checkoutLists',
@@ -146,18 +158,6 @@ export default {
       }, 0)
     }
 
-  },
-  data(){
-    return {
-      label:'Search ordered product',
-      clientOrder: {},
-      timeout: 6000,
-      text: '',
-      snackbar: false,
-      date: new Date(),
-      time: new Date(),
-      totalAmount: 0
-    }
   },
   methods: {
     onsubmit(thecart){
