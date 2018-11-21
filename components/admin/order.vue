@@ -53,6 +53,9 @@
 import {mapGetters} from 'vuex'
 import productItems from '@/components/agent/order/productitems'
 export default {
+  components: {
+    productItems
+  },
   data() {
     return {
       offset: 0
@@ -62,9 +65,6 @@ export default {
     ...mapGetters({
       order: 'admin/featuredagentorder'
     })
-  },
-  components: {
-    productItems
   },
   methods: {
     onscroll(e){

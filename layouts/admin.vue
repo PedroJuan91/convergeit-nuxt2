@@ -18,9 +18,10 @@
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
-    <v-list v-if='$vuetify.breakpoint.xsOnly'  v-for='(item, index) in heading' :key='index'>
+    <v-list v-if='$vuetify.breakpoint.xsOnly'>
       <v-divider />
       <v-list-tile
+      v-for='(item, index) in heading' :key='index'
       router
       :to='item.btnTo'>
         <v-list-tile-action>

@@ -65,7 +65,12 @@
 <script>
 import {mapGetters, mapActions} from 'vuex'
   export default {
-    props: ['data'],
+    props: {
+      data: {
+        type: Array,
+        required: true
+      }
+    },
     data(){
       return {
         timeout: 6000,

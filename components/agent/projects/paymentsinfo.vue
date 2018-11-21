@@ -104,6 +104,9 @@ import {mapGetters} from 'vuex'
 import halfpay from '@/components/custom/fullHalfpay'
   export default {
     layout: 'agent',
+    components: {
+      halfpay
+    },
     computed: {
       ...mapGetters({
         payments: 'render/featuredfullPayOrder',
@@ -120,9 +123,6 @@ import halfpay from '@/components/custom/fullHalfpay'
           return 'No'
         }
       }
-    },
-    components: {
-      halfpay
     }
   }
 </script>

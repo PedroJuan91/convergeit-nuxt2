@@ -97,13 +97,8 @@
 import routeToolbar from '@/components/header/ulo'
 import {mapState} from 'vuex'
   export default {
-    mounted() {
-      //do something after mounting vue instance
-      this.$nextTick(() => {
-        setTimeout(() => {
-          this.$nuxt.$loading.finish()
-        }, 3000)
-      })
+    components: {
+      routeToolbar
     },
     data(){
       return {
@@ -127,8 +122,23 @@ import {mapState} from 'vuex'
         timeout: 6000
       }
     },
-    components: {
-      routeToolbar
+    computed: {
+      ...mapState({
+        acct: 'account'
+      }),
+      fullname: function(){
+        if(this.acct != null){
+          return  this.acct.agtfname + ' ' + this.acct.agtlname
+        }
+      }
+    },
+    mounted() {
+      //do something after mounting vue instance
+      this.$nextTick(() => {
+        setTimeout(() => {
+          this.$nuxt.$loading.finish()
+        }, 3000)
+      })
     },
     methods: {
       signout() {
@@ -146,16 +156,6 @@ import {mapState} from 'vuex'
             this.snackbar= true
           }
         })
-      }
-    },
-    computed: {
-      ...mapState({
-        acct: 'account'
-      }),
-      fullname: function(){
-        if(this.acct != null){
-          return  this.acct.agtfname + ' ' + this.acct.agtlname
-        }
       }
     }
   }
