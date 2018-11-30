@@ -5,23 +5,25 @@
         v-model="drawer"
         app
         temporary
-        >
+      >
         <v-list>
           <v-list-tile>
             <v-list-tile-title><span class="title">Main Menu</span> </v-list-tile-title>
           </v-list-tile>
-          <v-list-tile v-for="(item, index) in items" :key="index"
+          <v-list-tile
+            v-for="(item, index) in items"
+            :key="index"
+            :to="item.to"
             router
             ripple
-            :to="item.to"
           >
             <v-list-tile-action>
               <v-icon
-              >{{item.icon}}</v-icon>
+              >{{ item.icon }}</v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
               <v-list-tile-title
-              >{{item.title}}</v-list-tile-title>
+              >{{ item.title }}</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
           <v-divider />
@@ -32,18 +34,20 @@
             <v-list-tile-title><span class="title">  Options</span></v-list-tile-title>
           </v-list-tile>
 
-          <v-list-tile v-for="(item, index) in headerItems" :key="index"
+          <v-list-tile
+            v-for="(item, index) in headerItems"
+            :key="index"
+            :to="item.btnTo"
             router
             ripple
-            :to="item.btnTo"
           >
             <v-list-tile-action>
               <v-icon
-              >{{item.icon}}</v-icon>
+              >{{ item.icon }}</v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
               <v-list-tile-title
-              >{{item.btnName}}</v-list-tile-title>
+              >{{ item.btnName }}</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
           <v-divider />
@@ -51,8 +55,8 @@
 
         <v-list>
           <v-list-tile
-          @click="signout"
-          ripple
+            ripple
+            @click="signout"
           >
             <v-list-tile-action>
               <v-icon>work_off
@@ -66,10 +70,12 @@
         </v-list>
 
       </v-navigation-drawer>
-      <routeToolbar v-for="(itemed, index) of headerItems" :key="index"
-      mainTitle="Products"
-      @toggle-drawer="drawer = !drawer"
-      :btns="headerItems"
+      <routeToolbar
+        v-for="(itemed, index) of headerItems"
+        :key="index"
+        :btns="headerItems"
+        main-title="Products"
+        @toggle-drawer="drawer = !drawer"
       />
       <v-snackbar
         v-model="snackbar"
@@ -97,13 +103,8 @@
 import routeToolbar from '@/components/header/ulo'
 import {mapState} from 'vuex'
   export default {
-    mounted() {
-      //do something after mounting vue instance
-      this.$nextTick(() => {
-        setTimeout(() => {
-          this.$nuxt.$loading.finish()
-        }, 3000)
-      })
+    components: {
+      routeToolbar
     },
     data(){
       return {
@@ -127,8 +128,23 @@ import {mapState} from 'vuex'
         timeout: 6000
       }
     },
-    components: {
-      routeToolbar
+    computed: {
+      ...mapState({
+        acct: 'account'
+      }),
+      fullname: function(){
+        if(this.acct != null){
+          return  this.acct.agtfname + ' ' + this.acct.agtlname
+        }
+      }
+    },
+    mounted() {
+      //do something after mounting vue instance
+      this.$nextTick(() => {
+        setTimeout(() => {
+          this.$nuxt.$loading.finish()
+        }, 3000)
+      })
     },
     methods: {
       signout() {
@@ -148,15 +164,5 @@ import {mapState} from 'vuex'
         })
       }
     },
-    computed: {
-      ...mapState({
-        acct: 'account'
-      }),
-      fullname: function(){
-        if(this.acct != null){
-          return  this.acct.agtfname + ' ' + this.acct.agtlname
-        }
-      }
-    }
   }
 </script>

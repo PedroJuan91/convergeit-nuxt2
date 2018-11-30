@@ -1,21 +1,46 @@
 <template>
   <v-content>
-    <v-form v-model="valid" ref="form" @submit.prevent="submit">
+    <v-form 
+      ref="form" 
+      v-model="valid" 
+      @submit.prevent="submit">
       <v-layout>
-        <v-flex xs5 sm3 md3 lg3>
+        <v-flex 
+          xs5 
+          sm3 
+          md3 
+          lg3>
           <span class="body-2 grey--text">Amount to pay: </span>
         </v-flex >
         <v-flex>
-          <span class="subheading font-weight-black">Php {{cashTotal}}.00</span>
+          <span class="subheading font-weight-black">Php {{ cashTotal }}.00</span>
         </v-flex>
       </v-layout>
       <v-layout my-3>
-        <v-flex xs12 sm5 md3 offset-xs0 offset-lg1>
-          <v-text-field box v-model='cashPay' id='cashPay'
-          prefix="₱" suffix=".00" label='Cash on Hand' :rules='[rules.required]'></v-text-field>
+        <v-flex 
+          xs12 
+          sm5 
+          md3 
+          offset-xs0 
+          offset-lg1>
+          <v-text-field 
+            id="cashPay" 
+            v-model="cashPay" 
+            :rules="[rules.required]"
+            box 
+            prefix="₱" 
+            suffix=".00" 
+            label="Cash on Hand"/>
         </v-flex>
-        <v-flex  xs12 sm5 md3 offset-xs0 offset-lg1>
-          <v-btn type="submit" flat><v-icon large>account_balance_wallet</v-icon><span class="body-2">Client Pay</span> </v-btn>
+        <v-flex 
+          xs12 
+          sm5 
+          md3 
+          offset-xs0 
+          offset-lg1>
+          <v-btn 
+            type="submit" 
+            flat><v-icon large>account_balance_wallet</v-icon><span class="body-2">Client Pay</span> </v-btn>
         </v-flex>
       </v-layout>
     </v-form>

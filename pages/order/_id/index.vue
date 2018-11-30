@@ -1,33 +1,58 @@
 <template>
   <v-content>
     <!-- <h1>hello orders {{$route.params.id}}</h1> -->
-    <v-layout row wrap>
-      <v-flex xs12 sm12 md4>
+    <v-layout 
+      row 
+      wrap>
+      <v-flex 
+        xs12 
+        sm12 
+        md4>
         <v-img
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCKPLjbKDK11wrS1VbzXaempsJwhRoMOgMZIJZHuinC9zrKmFM"
           aspect-ratio="2.9"
           width="400px"
-        ></v-img>
+        />
       </v-flex>
-      <v-flex xs12 sm12 md6 offset-md2>
+      <v-flex 
+        xs12 
+        sm12 
+        md6 
+        offset-md2>
         <v-spacer />
         <v-layout row>
-          <span v-if="data.confirmquotation" class="display-3">Billing Statement</span>
-          <span v-else class="display-3">Quotation Statement</span>
+          <span 
+            v-if="data.confirmquotation" 
+            class="display-3">Billing Statement</span>
+          <span 
+            v-else 
+            class="display-3">Quotation Statement</span>
         </v-layout>
-        <span class="body-1  grey--text">Client name: </span><span class="body-2">{{data.ordnameto}}</span><br />
-        <span class="body-1 grey--text">Address: </span><span class="body-2"> {{data.address}}</span><br />
-        <span class="body-1 grey--text">Email: </span><span class="body-2"> {{data.ordsend}}</span><br />
+        <span class="body-1  grey--text">Client name: </span><span class="body-2">{{ data.ordnameto }}</span><br >
+        <span class="body-1 grey--text">Address: </span><span class="body-2"> {{ data.address }}</span><br >
+        <span class="body-1 grey--text">Email: </span><span class="body-2"> {{ data.ordsend }}</span><br >
       </v-flex>
     </v-layout>
-    <v-layout row wrap my-3>
-      <v-flex xs12 sm12 md12 >
+    <v-layout 
+      row 
+      wrap 
+      my-3>
+      <v-flex 
+        xs12 
+        sm12 
+        md12 >
         <v-card dark>
           <v-card-actions>
             <v-layout row>
-                <span class="display-1">Items</span>
+              <span class="display-1">Items</span>
               <v-spacer />
-              <v-btn flat @click="itemed = !itemed"><span class="title" v-if="!itemed">show items</span><span class="title" v-else>collapse items</span> </v-btn>
+              <v-btn 
+                flat 
+                @click="itemed = !itemed"><span 
+                  v-if="!itemed" 
+                  class="title">show items</span><span 
+                    v-else 
+                    class="title">collapse items</span> </v-btn>
             </v-layout>
           </v-card-actions>
         </v-card>
@@ -36,8 +61,13 @@
         </v-container>
       </v-flex>
     </v-layout>
-    <v-layout row wrap>
-      <v-flex xs12 sm12 md12>
+    <v-layout 
+      row 
+      wrap>
+      <v-flex 
+        xs12 
+        sm12 
+        md12>
         <v-card dark>
           <v-card-actions>
             <v-layout row>
@@ -46,53 +76,75 @@
           </v-card-actions>
         </v-card>
         <v-container>
-          <v-layout row wrap>
-            <v-flex xs12 sm12 md3 my-5>
+          <v-layout 
+            row 
+            wrap>
+            <v-flex 
+              xs12 
+              sm12 
+              md3 
+              my-5>
               <v-card>
                 <v-card-title>
                   <span class="headline"><u>Total Value of Items</u></span>
                 </v-card-title>
                 <v-card-text>
-                  <span class="title">Php {{data.itemstotal}}.00</span>
+                  <span class="title">Php {{ data.itemstotal }}.00</span>
                 </v-card-text>
               </v-card>
             </v-flex>
-            <v-flex xs12 sm12 md6 mx-3>
+            <v-flex 
+              xs12 
+              sm12 
+              md6 
+              mx-3>
               <v-card v-if="!data.confirmquotation">
-                <v-form v-on:submit.prevent="toSubmit">
+                <v-form @submit.prevent="toSubmit">
                   <v-card-title>
                     <v-layout justify-center>
-                    <span class="headline">Confirmation</span>
+                      <span class="headline">Confirmation</span>
                     </v-layout>
                     <v-layout>
                       <v-checkbox
-                        label="You have agree the listings above and want to direct in payments"
                         v-model="termsagreement"
+                        label="You have agree the listings above and want to direct in payments"
                         class="title black--text"
-                      ></v-checkbox>
+                      />
                     </v-layout>
                   </v-card-title>
                   <v-card-actions>
-                    <v-btn type="submit" :disabled="!termsagreement">approve quotation
+                    <v-btn 
+                      :disabled="!termsagreement" 
+                      type="submit">approve quotation
                     </v-btn>
                   </v-card-actions>
                 </v-form>
               </v-card>
               <v-card v-else-if="!data.hasPaid">
                 <v-card-title>
-                  <v-layout row justify-center>
-                      <span mt-3 class="display-1">Payments</span>
+                  <v-layout 
+                    row 
+                    justify-center>
+                    <span 
+                      mt-3 
+                      class="display-1">Payments</span>
                   </v-layout>
                 </v-card-title>
                 <v-card-text>
                   <v-layout row>
-                    <v-flex xs6 sm6 md8 my-4>
-                      <v-form v-on:submit.prevent="payment">
+                    <v-flex 
+                      xs6 
+                      sm6 
+                      md8 
+                      my-4>
+                      <v-form @submit.prevent="payment">
                         <v-radio-group v-model="pay">
-                          <v-radio v-for="(item, index) in labels" :key="index"
+                          <v-radio 
+                            v-for="(item, index) in labels" 
+                            :key="index"
                             :label="`I want to pay ${item.label}`"
                             :value="item.val"
-                          ></v-radio>
+                          />
                           <div v-if="$vuetify.breakpoint.mdAndUp">
                             <v-btn type="submit" > <span v-if="pay === 2">Full payment with paypal</span> <span v-else>Half Payment with paypal</span> </v-btn>
                           </div>
@@ -102,13 +154,20 @@
                         </v-radio-group>
                       </v-form>
                     </v-flex>
-                    <v-flex xs6 sm6 md6>
-                      <v-layout row justify-center><span class="headline" flat>Disclaimer!!</span> </v-layout>
+                    <v-flex 
+                      xs6 
+                      sm6 
+                      md6>
+                      <v-layout 
+                        row 
+                        justify-center><span 
+                          class="headline" 
+                          flat>Disclaimer!!</span> </v-layout>
                       <span class="subheading">
-                             Hello World!!<br/>
-                             Please be notified that the services under this system
-                             are still in <u>development mode</u>. And please be guided that every transactions
-                             are <u><b>NOT REAL</b></u>. Thanks!!</span>
+                        Hello World!!<br>
+                        Please be notified that the services under this system
+                        are still in <u>development mode</u>. And please be guided that every transactions
+                        are <u><b>NOT REAL</b></u>. Thanks!!</span>
                     </v-flex>
                   </v-layout>
                 </v-card-text>
@@ -117,33 +176,39 @@
                 <v-card-title><v-layout justify-center><span class="headline"> Confirmed Payment</span></v-layout></v-card-title>
                 <v-card-content>
                   <v-layout>
-                  <v-flex xs6 sm6 md6>
-                    <v-flex mb-3>
+                    <v-flex 
+                      xs6 
+                      sm6 
+                      md6>
+                      <v-flex mb-3>
+                        <v-list>
+                          <v-list-tile>
+                            <span class="grey--text body-1">mode of payment: </span><span class="black--text subheading">{{ data.modepay }} payment</span>
+                          </v-list-tile>
+                          <v-list-tile v-if="data.modepay === 'half'">
+                            <v-btn @click="halfpay"> pay in full </v-btn>
+                          </v-list-tile>
+                        </v-list>
+                      </v-flex>
                       <v-list>
-                        <v-list-tile>
-                          <span class="grey--text body-1">mode of payment: </span><span class="black--text subheading">{{data.modepay}} payment</span>
-                        </v-list-tile>
-                        <v-list-tile v-if="data.modepay === 'half'">
-                          <v-btn @click="halfpay"> pay in full </v-btn>
+                        <v-list-tile v-if="data.modepay === 'full'">
+                          <span class="body-1">Thank you for paying in full <br> Please inquest the agent for details of the project</span>
                         </v-list-tile>
                       </v-list>
                     </v-flex>
-                    <v-list>
-                      <v-list-tile v-if="data.modepay === 'full'">
-                        <span class="body-1">Thank you for paying in full <br/> Please inquest the agent for details of the project</span>
-                      </v-list-tile>
-                    </v-list>
-                  </v-flex>
-                  <v-flex xs6 sm6 md6>
-                    <v-layout justify-center><span class="title">Disclaimer</span> </v-layout>
-                    <span class="subheading">
-                      hello world! <br />
-                      Please be notified that the services under this system
-                      are still in <u>development mode</u>. And please be guided that every transactions
-                      are <u><b>NOT REAL</b></u>. Thanks!!
-                    </span>
-                  </v-flex>
-                </v-layout>
+                    <v-flex 
+                      xs6 
+                      sm6 
+                      md6>
+                      <v-layout justify-center><span class="title">Disclaimer</span> </v-layout>
+                      <span class="subheading">
+                        hello world! <br >
+                        Please be notified that the services under this system
+                        are still in <u>development mode</u>. And please be guided that every transactions
+                        are <u><b>NOT REAL</b></u>. Thanks!!
+                      </span>
+                    </v-flex>
+                  </v-layout>
                 </v-card-content>
               </v-card>
             </v-flex>
@@ -173,6 +238,43 @@ import firebase from 'firebase'
 import firebaseConfig from '@/plugins/configFirebase'
 import ids from '@/keys'
 export default {
+  components: {
+    productItems
+  },
+  data() {
+    return {
+      itemed: false,
+      termsagreement: false,
+      pay: 2,
+      labels: [
+        {label: 'full', val: 2},
+        {label: 'half', val: 1}
+      ],
+      text: '',
+      snackbar: false,
+      timeout: 6000
+    }
+  },
+  computed:{
+    data(){
+      return this.$store.getters.profileOrder(this.order)
+    },
+    half(){
+      if(this.pay === 0){
+        return true
+      }else{
+        return false
+      }
+    },
+    paylabel(){
+      if(this.pay === 1){
+        return 'half'
+      }
+      if(this.pay === 2){
+        return 'full'
+      }
+    }
+  },
 
   mounted(){
     this.$nextTick(() => {
@@ -215,40 +317,6 @@ export default {
     store.commit('order/myorderbycustomer', lay2)
     const ordno = `-${splitted[1]}`
     return {order : ordno}
-  },
-  computed:{
-    data(){
-      return this.$store.getters.profileOrder(this.order)
-    },
-    half(){
-      if(this.pay === 0){
-        return true
-      }else{
-        return false
-      }
-    },
-    paylabel(){
-      if(this.pay === 1){
-        return 'half'
-      }
-      if(this.pay === 2){
-        return 'full'
-      }
-    }
-  },
-  data() {
-    return {
-      itemed: false,
-      termsagreement: false,
-      pay: 2,
-      labels: [
-        {label: 'full', val: 2},
-        {label: 'half', val: 1}
-      ],
-      text: '',
-      snackbar: false,
-      timeout: 6000
-    }
   },
   methods: {
     halfpay(){
@@ -357,8 +425,5 @@ export default {
 
     }
   },
-  components: {
-    productItems
-  }
 }
 </script>

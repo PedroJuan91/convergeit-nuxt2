@@ -1,18 +1,33 @@
 <template>
   <v-layout row>
-    <v-flex ml-1 xs3 sm3 md3>
-      <span>{{prodname}} </span>
+    <v-flex 
+      ml-1 
+      xs3 
+      sm3 
+      md3>
+      <span>{{ prodname }} </span>
     </v-flex>
-    <v-flex xs6 sm6 md6 v-for="(desc, index) in proddesc" :key="index">
+    <v-flex 
+      v-for="(desc, index) in proddesc" 
+      :key="index" 
+      xs6 
+      sm6 
+      md6>
       <ul>
-        <li>{{desc.text}}</li>
+        <li>{{ desc.text }}</li>
       </ul>
     </v-flex>
-    <v-flex xs3 sm3 md1 >
-      <span> qty: {{prodqty}}</span>
+    <v-flex 
+      xs3 
+      sm3 
+      md1 >
+      <span> qty: {{ prodqty }}</span>
     </v-flex>
-    <v-flex xs3 sm3 md2 >
-      <span> {{prodprice}}</span>
+    <v-flex 
+      xs3 
+      sm3 
+      md2 >
+      <span> {{ prodprice }}</span>
     </v-flex>
   </v-layout>
 </template>

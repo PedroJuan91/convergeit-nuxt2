@@ -1,61 +1,75 @@
 <template>
   <v-content>
-    <v-layout row justify-center>
-      <v-flex xs12 sm6 >
+    <v-layout 
+      row 
+      justify-center>
+      <v-flex 
+        xs12 
+        sm6 >
         <v-card>
           <v-card-title>
             <h2>Create new Client</h2>
           </v-card-title>
-          <v-form v-model="valid" ref="form" @submit.prevent="submit">
+          <v-form 
+            ref="form" 
+            v-model="valid" 
+            @submit.prevent="submit">
             <v-text-field
-              maxLength='12'
-              v-model="cltname"
-              label="Client name"
               id="cltname"
-              solo-inverted
+              v-model="cltname"
               :rules="[rules.required]"
-            ></v-text-field>
+              max-length="12"
+              label="Client name"
+              solo-inverted
+            />
 
             <v-text-field
-              v-model="cltaddress"
-              label="Client Address"
               id="cltaddress"
-              solo-inverted
+              v-model="cltaddress"
               :rules="[rules.required]"
-            ></v-text-field>
-
-            <v-text-field
-              v-model="cltemail"
-              label="Client Email"
-              id="cltemail"
+              label="Client Address"
               solo-inverted
-              :rules="[rules.required, rules.email]"
-            ></v-text-field>
+            />
 
             <v-text-field
-              v-model="cltphone"
-              label="Client Phone"
+              id="cltemail"
+              v-model="cltemail"
+              :rules="[rules.required, rules.email]"
+              label="Client Email"
+              solo-inverted
+            />
+
+            <v-text-field
               id="cltphone"
+              v-model="cltphone"
+              :rules="[rules.required, rules.limit]"
+              label="Client Phone"
               mask="####-#######"
               solo-inverted
-              :rules="[rules.required, rules.limit]"
-            ></v-text-field>
+            />
             <v-text-field
-            label="Client image url"
-            id="cltimg"
-            v-model="cltimg"
-            :rules="[rules.required]">
-            </v-text-field>
+              id="cltimg"
+              v-model="cltimg"
+              :rules="[rules.required]"
+              label="Client image url"/>
 
             <v-layout row>
-              <v-flex xs12 sm12 md12 offset-sm2>
-                <img :src="cltimg" height="150">
+              <v-flex 
+                xs12 
+                sm12 
+                md12 
+                offset-sm2>
+                <img 
+                  :src="cltimg" 
+                  height="150">
               </v-flex>
             </v-layout>
 
             <v-card-actions>
               <v-spacer />
-              <v-btn :disabled="!validIn" type="submit">Submit</v-btn>
+              <v-btn 
+                :disabled="!validIn" 
+                type="submit">Submit</v-btn>
             </v-card-actions>
           </v-form>
           <v-snackbar

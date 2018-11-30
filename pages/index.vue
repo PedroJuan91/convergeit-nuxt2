@@ -1,37 +1,44 @@
 <template>
   <v-content>
-    <v-container fluid row>
+    <v-container 
+      fluid 
+      row>
       <v-card>
-        <v-img aspect-ratio='2.90' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCKPLjbKDK11wrS1VbzXaempsJwhRoMOgMZIJZHuinC9zrKmFM" />
+        <v-img 
+          aspect-ratio="2.90" 
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCKPLjbKDK11wrS1VbzXaempsJwhRoMOgMZIJZHuinC9zrKmFM" />
       </v-card>
     </v-container>
     <v-container>
       <v-layout row>
         <v-flex>
-          <v-tabs slot="extension"
-          slider-color="grey"
-          v-model="model">
+          <v-tabs 
+            slot="extension"
+            v-model="model"
+            slider-color="grey">
             <v-tab
-            v-for="(item, index) in tabshead"
-            :key="index">
-              {{item.title}}
+              v-for="(item, index) in tabshead"
+              :key="index">
+              {{ item.title }}
             </v-tab>
           </v-tabs>
         </v-flex>
       </v-layout>
       <v-tabs-items v-model="model">
-        <v-tab-item v-for="(item, index) in tabshead" :key="index">
-          <v-layout v-if='index === 0'>
+        <v-tab-item 
+          v-for="(item, index) in tabshead" 
+          :key="index">
+          <v-layout v-if="index === 0">
             <v-flex>
               <home />
             </v-flex>
           </v-layout>
-          <v-layout v-if='index === 1'>
+          <v-layout v-if="index === 1">
             <v-flex>
               <prodservice />
             </v-flex>
           </v-layout>
-          <v-layout v-if='index === 2'>
+          <v-layout v-if="index === 2">
             <v-flex>
               <about />
             </v-flex>
@@ -47,6 +54,11 @@ import prodservice from '@/components/landingpage/tabs/productservices'
 import about from '@/components/landingpage/tabs/about'
 
   export default {
+    components: {
+      home,
+      prodservice,
+      about
+    },
     data(){
       return {
         tabshead:[
@@ -60,10 +72,5 @@ import about from '@/components/landingpage/tabs/about'
         contenthead: 'We are a premiere provider of customer-focused telecommunications and ICT Solutions dedicated to equip, enable and empower our clients. As a  pioneer in fiber optic installations, we have dedicated our experience and expertise to ensuring our customers receive the best in networking infrastructure, facilities management, broadband implementation and full telecommunication infrastructure and support.'
       }
     },
-    components: {
-      home,
-      prodservice,
-      about
-    }
   }
 </script>

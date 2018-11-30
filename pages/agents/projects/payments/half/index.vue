@@ -3,19 +3,34 @@
     <v-layout>
       <v-flex>
         <v-layout>
-          <v-btn @click="backhome" icon flat><v-icon large>keyboard_backspace</v-icon></v-btn>
+          <v-btn 
+            icon 
+            flat 
+            @click="backhome"><v-icon large>keyboard_backspace</v-icon></v-btn>
         </v-layout>
       </v-flex>
-      <v-flex xs12 sm5 md5 offset-xs0 offset-lg2>
+      <v-flex 
+        xs12 
+        sm5 
+        md5 
+        offset-xs0 
+        offset-lg2>
         <v-layout justify-end>
-          <v-text-field outline :label='label'  v-model='searchInput'></v-text-field>
+          <v-text-field 
+            :label="label" 
+            v-model="searchInput" 
+            outline/>
         </v-layout>
       </v-flex>
     </v-layout>
-    <v-layout justify-center v-if="itemslen < 1">
+    <v-layout 
+      v-if="itemslen < 1" 
+      justify-center>
       <span class="display-2">No payments made in half</span>
     </v-layout>
-    <fullpay :items='searching' v-else />
+    <fullpay 
+      v-else 
+      :items="searching" />
   </v-content>
 </template>
 <script>

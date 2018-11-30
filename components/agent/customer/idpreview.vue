@@ -1,18 +1,19 @@
 <template>
   <v-layout>
-    <v-flex xs12  >
+    <v-flex xs12 >
       <v-card
-      v-for="(item, index) in items" :key="index"
-      class="card"
-      ripple
-      @click.native="loadDetail(item.id)">
+        v-for="(item, index) in items" 
+        :key="index"
+        class="card"
+        ripple
+        @click.native="loadDetail(item.id)">
         <v-card-title>
-          <h1>{{item.cltname}}</h1>
+          <h1>{{ item.cltname }}</h1>
         </v-card-title>
         <v-card-text>
           <v-flex xs12>
-              <h4>Address: {{item.cltaddress}}</h4> <br />
-              <h4>Email: {{item.cltemail}}</h4>
+            <h4>Address: {{ item.cltaddress }}</h4> <br >
+            <h4>Email: {{ item.cltemail }}</h4>
           </v-flex>
         </v-card-text>
       </v-card>
@@ -21,7 +22,7 @@
 </template>
 <script>
   export default {
-    name: 'idpreview',
+    name: 'Idpreview',
     props: {
       items: {
         type: Array,

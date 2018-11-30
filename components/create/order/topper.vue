@@ -1,14 +1,15 @@
 <template>
-  <v-layout  row wrap>
+  <v-layout 
+    row 
+    wrap>
     <v-flex xs3 >
-      <h1>{{title}}</h1>
+      <h1>{{ title }}</h1>
     </v-flex>
     <v-flex xs8>
       <v-text-field
-      label="Search Product"
-      :v-model="textmodel"
-      :id="textid">
-      </v-text-field>
+        :v-model="textmodel"
+        :id="textid"
+        label="Search Product"/>
     </v-flex>
 
   </v-layout>

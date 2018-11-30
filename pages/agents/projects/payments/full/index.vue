@@ -3,19 +3,34 @@
     <v-layout>
       <v-flex>
         <v-layout>
-          <v-btn icon @click="backHome" flat><v-icon large>keyboard_backspace</v-icon></v-btn>
+          <v-btn 
+            icon 
+            flat 
+            @click="backHome"><v-icon large>keyboard_backspace</v-icon></v-btn>
         </v-layout>
       </v-flex>
-      <v-flex xs12 sm5 md5 offset-xs0 offset-lg2>
+      <v-flex 
+        xs12 
+        sm5 
+        md5 
+        offset-xs0 
+        offset-lg2>
         <v-layout justify-end>
-          <v-text-field outline :label='label'  v-model='searchInput'></v-text-field>
+          <v-text-field 
+            :label="label" 
+            v-model="searchInput" 
+            outline/>
         </v-layout>
       </v-flex>
     </v-layout>
-    <v-layout justify-center v-if="lenpayorder < 1">
+    <v-layout 
+      v-if="lenpayorder < 1" 
+      justify-center>
       <span class="display-2">No List for Full Payments</span>
     </v-layout>
-    <fullpay v-else :items='searching'  />
+    <fullpay 
+      v-else 
+      :items="searching" />
   </v-content>
 </template>
 <script>

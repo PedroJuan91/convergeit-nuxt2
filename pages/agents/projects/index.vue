@@ -1,43 +1,65 @@
 <template>
   <v-content>
     <v-layout>
-      <v-btn icon @click="returnHome"><v-icon large>keyboard_backspace</v-icon></v-btn>
+      <v-btn 
+        icon 
+        @click="returnHome"><v-icon large>keyboard_backspace</v-icon></v-btn>
     </v-layout>
     <v-layout>
-      <v-flex xs12 sm5 md5 lg6  mx-1>
+      <v-flex 
+        xs12 
+        sm5 
+        md5 
+        lg6 
+        mx-1>
         <v-card>
           <v-toolbar>
             <v-toolbar-title>Approve Quotation </v-toolbar-title>
             <v-spacer />
-            <v-toolbar-items> <v-btn flat to='/agents/projects/quotate'>View All</v-btn></v-toolbar-items>
+            <v-toolbar-items> <v-btn 
+              flat 
+              to="/agents/projects/quotate">View All</v-btn></v-toolbar-items>
           </v-toolbar>
           <v-card-title v-if="lenquotate < 1">
-              <span class="headline" >No client confirm quotation</span>
-            </v-card-title>
+            <span class="headline" >No client confirm quotation</span>
+          </v-card-title>
           <v-flex v-else>
-            <quotate  />
+            <quotate />
           </v-flex>
         </v-card>
       </v-flex>
-      <v-flex xs12 sm5 md5 lg6 mx-1 v-if='!$vuetify.breakpoint.xsOnly'>
+      <v-flex 
+        v-if="!$vuetify.breakpoint.xsOnly" 
+        xs12 
+        sm5 
+        md5 
+        lg6 
+        mx-1>
         <v-card>
           <v-toolbar>
             <v-toolbar-title>Payments Lists</v-toolbar-title>
           </v-toolbar>
           <v-flex>
-            <payment  />
+            <payment />
           </v-flex>
         </v-card>
       </v-flex>
     </v-layout>
-    <v-layout my-3 v-if='$vuetify.breakpoint.xsOnly'>
-      <v-flex xs12 sm5 md5 lg6 mx-1>
+    <v-layout 
+      v-if="$vuetify.breakpoint.xsOnly" 
+      my-3>
+      <v-flex 
+        xs12 
+        sm5 
+        md5 
+        lg6 
+        mx-1>
         <v-card>
           <v-toolbar>
             <v-toolbar-title>Payments Lists</v-toolbar-title>
           </v-toolbar>
           <v-flex>
-            <payment  />
+            <payment />
           </v-flex>
         </v-card>
       </v-flex>

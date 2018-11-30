@@ -1,8 +1,8 @@
 <template>
   <v-list-tile >
     <v-list-tile-content>
-    <v-list-tile-sub-title><span class="caption">Full payment date: </span><span :class="text">{{$dateFilter(time)}}</span></v-list-tile-sub-title>
-  </v-list-tile-content>
+      <v-list-tile-sub-title><span class="caption">Full payment date: </span><span :class="text">{{ $dateFilter(time) }}</span></v-list-tile-sub-title>
+    </v-list-tile-content>
   </v-list-tile>
 </template>
 <script>

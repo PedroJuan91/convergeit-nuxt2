@@ -4,12 +4,22 @@
       <v-layout>
         <v-flex>
           <v-layout>
-            <v-btn icon @click="returnhome"><v-icon large>keyboard_backspace</v-icon></v-btn>
+            <v-btn 
+              icon 
+              @click="returnhome"><v-icon large>keyboard_backspace</v-icon></v-btn>
           </v-layout>
         </v-flex>
-        <v-flex xs12 sm5 md5 offset-xs0 offset-lg2>
+        <v-flex 
+          xs12 
+          sm5 
+          md5 
+          offset-xs0 
+          offset-lg2>
           <v-layout justify-end>
-            <v-text-field outline :label='label'  v-model='searchInput'></v-text-field>
+            <v-text-field 
+              :label="label" 
+              v-model="searchInput" 
+              outline/>
           </v-layout>
         </v-flex>
       </v-layout>
@@ -18,7 +28,7 @@
           <v-flex xs12 >
             <productPrev
               :items="searching"
-            ></productPrev>
+            />
           </v-flex>
         </v-layout>
       </section>

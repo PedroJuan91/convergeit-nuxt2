@@ -2,7 +2,9 @@
   <v-content>
     <v-layout>
       <v-card>
-        <v-layout row justify-center>
+        <v-layout 
+          row 
+          justify-center>
           <v-card-title><span class="headline"><b>Company How?</b></span></v-card-title>
         </v-layout>
         <v-card-text dark>

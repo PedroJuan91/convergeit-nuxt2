@@ -1,40 +1,44 @@
 <template>
   <v-app>
     <v-navigation-drawer
-    v-model="drawer"
-    temporary
-    app>
-      <v-list v-for="(item, index) in drawering" :key="index">
+      v-model="drawer"
+      temporary
+      app>
+      <v-list 
+        v-for="(item, index) in drawering" 
+        :key="index">
         <v-list-tile
-          router
           :to="item.to"
+          router
         >
           <v-list-tile-action>
-            <v-icon>{{item.icon}}</v-icon>
+            <v-icon>{{ item.icon }}</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title>{{item.title}}
+            <v-list-tile-title>{{ item.title }}
             </v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
-      <v-list v-if='$vuetify.breakpoint.xsOnly'>
+      <v-list v-if="$vuetify.breakpoint.xsOnly">
         <v-divider />
         <v-list-tile
-        router
-        :to='heading[0].btnTo'>
+          :to="heading[0].btnTo"
+          router>
           <v-list-tile-action>
-            <v-icon>{{heading[0].icon}}</v-icon>
+            <v-icon>{{ heading[0].icon }}</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title>{{heading[0].btnName}}
+            <v-list-tile-title>{{ heading[0].btnName }}
             </v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
       <v-list>
         <v-divider />
-        <v-list-tile ripple @click="signout">
+        <v-list-tile 
+          ripple 
+          @click="signout">
           <v-list-tile-action>
             <v-icon> work_off</v-icon>
           </v-list-tile-action>
@@ -43,15 +47,15 @@
             </v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
-      </v-list  >
+      </v-list >
 
     </v-navigation-drawer>
     <the-header
-      mainTitle="Clients"
-      @toggle-drawer="drawer = !drawer"
       :btns="heading"
-      myColor="blue-grey"
-      :colorChange="wanted"
+      :color-change="wanted"
+      main-title="Clients"
+      my-color="blue-grey"
+      @toggle-drawer="drawer = !drawer"
     />
     <v-content>
       <nuxt />

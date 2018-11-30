@@ -1,29 +1,37 @@
 <template>
-  <v-layout row wrap>
-    <v-flex xs12 sm6 md4 offset-xs4  mt-5>
+  <v-layout 
+    row 
+    wrap>
+    <v-flex 
+      xs12 
+      sm6 
+      md4 
+      offset-xs4 
+      mt-5>
       <v-card>
         <v-card-title>
           <v-layout justify-center>
             <h1>Login Admin</h1>
           </v-layout>
         </v-card-title>
-        <v-form v-model="valid" ref="form" @submit.prevent="onLogin">
+        <v-form 
+          ref="form" 
+          v-model="valid" 
+          @submit.prevent="onLogin">
           <v-card-text>
             <v-text-field
-            label="Username Admin"
-            id="adminuname"
-            v-model="adminuname"
-            :rules="[rules.required, rules.email]"
-            solo-inverted>
-            </v-text-field>
+              id="adminuname"
+              v-model="adminuname"
+              :rules="[rules.required, rules.email]"
+              label="Username Admin"
+              solo-inverted/>
             <v-text-field
-            label="Password Admin"
-            id="adminpword"
-            type="password"
-            v-model="adminpword"
-            :rules="[rules.required]"
-            solo-inverted>
-            </v-text-field>
+              id="adminpword"
+              v-model="adminpword"
+              :rules="[rules.required]"
+              label="Password Admin"
+              type="password"
+              solo-inverted/>
           </v-card-text>
           <v-card-actions>
             <v-spacer />

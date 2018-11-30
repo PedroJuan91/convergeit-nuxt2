@@ -2,32 +2,34 @@
   <v-app dark >
     <header>
 
-    <v-navigation-drawer
-      v-model="drawer"
-      app
-    >
-      <v-list v-for="item in items" :key="item.id">
-        <v-list-tile
-          router
-          :to="item.to"
-        >
-          <v-list-tile-action>
-            <v-icon
-            >{{item.icon}}</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title
-            >{{item.title}}</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
-    <theHeader
-    :mainTitle="namedefault"
-    @toggle-drawer="drawer = !drawer"
-    :btns="headeritems"
-    />
-  </header>
+      <v-navigation-drawer
+        v-model="drawer"
+        app
+      >
+        <v-list 
+          v-for="item in items" 
+          :key="item.id">
+          <v-list-tile
+            :to="item.to"
+            router
+          >
+            <v-list-tile-action>
+              <v-icon
+              >{{ item.icon }}</v-icon>
+            </v-list-tile-action>
+            <v-list-tile-content>
+              <v-list-tile-title
+              >{{ item.title }}</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </v-list>
+      </v-navigation-drawer>
+      <theHeader
+        :main-title="namedefault"
+        :btns="headeritems"
+        @toggle-drawer="drawer = !drawer"
+      />
+    </header>
     <v-content>
       <v-container>
         <nuxt />
@@ -41,12 +43,9 @@
 import theHeader from '@/components/header/ulo'
 import theFooter from '@/components/footer/foot'
   export default {
-    mounted(){
-      this.$nextTick(() => {
-        setTimeout(() => {
-          this.$nuxt.$loading.finish()
-        }, 3000)
-      })
+    components: {
+      theHeader,
+      theFooter
     },
     data() {
       return {
@@ -60,9 +59,12 @@ import theFooter from '@/components/footer/foot'
         drawer: false
       }
     },
-    components: {
-      theHeader,
-      theFooter
-    }
+    mounted(){
+      this.$nextTick(() => {
+        setTimeout(() => {
+          this.$nuxt.$loading.finish()
+        }, 3000)
+      })
+    },
   }
 </script>

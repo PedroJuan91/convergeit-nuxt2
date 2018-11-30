@@ -1,130 +1,146 @@
 <template>
   <v-flex>
     <v-layout mb-2>
-      <v-btn @click="returnME"  icon flat><v-icon large>keyboard_backspace</v-icon></v-btn>
+      <v-btn
+        icon
+        flat
+        @click="returnME"><v-icon large>keyboard_backspace</v-icon></v-btn>
       <v-spacer />
       <span class="display-1 font-weight-bold" >Edit Product</span>
 
     </v-layout>
-    <v-form v-model="valid" ref="form" @submit.prevent="submit">
+    <v-form
+      ref="form"
+      v-model="valid"
+      @submit.prevent="submit">
       <v-text-field
-        v-model="prodname"
-        label="Products name"
         id="prodname"
-        solo-inverted
+        v-model="prodname"
         :rules="[rules.required]"
-      ></v-text-field>
+        label="Products name"
+        solo-inverted
+      />
 
       <v-text-field
-      label="Product image url"
-      id="prodimg"
-      v-model="prodimg"
-      :rules="[rules.required]">
-      </v-text-field>
+        id="prodimg"
+        v-model="prodimg"
+        :rules="[rules.required]"
+        label="Product image url"/>
 
       <v-layout row>
-        <v-flex xs12 sm12 md12 offset-sm2>
-          <img :src="prodimg" height="150">
+        <v-flex
+          xs12
+          sm12
+          md12
+          offset-sm2>
+          <img
+            :src="prodimg"
+            height="150">
         </v-flex>
       </v-layout>
 
       <v-combobox
-      v-model="model"
-      :filter="filter"
-      :hide-no-data="!search"
-      :items="items"
-      :search-input.sync="search"
-      hide-selected
-      label="More for Desciption"
-      multiple
-      small-chips
-      solo
+        v-model="model"
+        :filter="filter"
+        :hide-no-data="!search"
+        :items="items"
+        :search-input.sync="search"
+        hide-selected
+        label="More for Desciption"
+        multiple
+        small-chips
+        solo
       >
         <template slot="no-data">
           <v-list-tile>
             <span class="subheading">Create</span>
-              <v-chip
+            <v-chip
               :color="`${colors[nonce - 1]} lighten-3`"
               label
               small
-              >
+            >
               {{ search }}
-              </v-chip>
+            </v-chip>
           </v-list-tile>
         </template>
         <template
           v-if="item === Object(item)"
           slot="selection"
           slot-scope="{ item, parent, selected }"
-          >
-            <v-chip
+        >
+          <v-chip
             :color="`${item.color} lighten-3`"
             :selected="selected"
             label
             small
-            >
-              <span class="pr-2">
-                {{ item.text }}
-              </span>
+          >
+            <span class="pr-2">
+              {{ item.text }}
+            </span>
             <v-icon
-            small
-            @click="parent.selectItem(item)"
+              small
+              @click="parent.selectItem(item)"
             >close</v-icon>
-            </v-chip>
+          </v-chip>
         </template>
         <template
-        slot="item"
-        slot-scope="{ index, item, parent }"
+          slot="item"
+          slot-scope="{ index, item, parent }"
         >
           <v-list-tile-content>
             <v-text-field
-            v-if="editing === item"
-            v-model="editing.text"
-            autofocus
-            flat
-            background-color="transparent"
-            hide-details
-            solo
-            @keyup.enter="edit(index, item)"
-            ></v-text-field>
+              v-if="editing === item"
+              v-model="editing.text"
+              autofocus
+              flat
+              background-color="transparent"
+              hide-details
+              solo
+              @keyup.enter="edit(index, item)"
+            />
             <v-chip
-            v-else
-            :color="`${item.color} lighten-3`"
-            dark
-            label
-            small
+              v-else
+              :color="`${item.color} lighten-3`"
+              dark
+              label
+              small
             >
               {{ item.text }}
             </v-chip>
           </v-list-tile-content>
-          <v-spacer></v-spacer>
+          <v-spacer/>
           <v-list-tile-action @click.stop>
             <v-btn
-            icon
-            @click.stop.prevent="edit(index, item)"
+              icon
+              @click.stop.prevent="edit(index, item)"
             >
-            <v-icon>{{ editing !== item ? 'edit' : 'check' }}</v-icon>
+              <v-icon>{{ editing !== item ? 'edit' : 'check' }}</v-icon>
             </v-btn>
           </v-list-tile-action>
         </template>
       </v-combobox>
       <v-layout row>
-        <v-flex xs12 sm6 md4>
+        <v-flex
+          xs12
+          sm6
+          md4>
           <v-text-field
-            v-model="prodprice"
-            label="Price"
             id="prodprice"
+            v-model="prodprice"
+            :rules="[rules.required]"
+            label="Price"
             mask="######"
             prefix="₱"
             suffix=".00"
             solo-inverted
-            :rules="[rules.required]"
-          ></v-text-field>
+          />
         </v-flex>
-    </v-layout>
+      </v-layout>
       <v-card-actions>
         <v-spacer />
-        <v-btn :disabled="!validIn" type="submit">Submit</v-btn>
+        <v-btn
+          :disabled="!validIn"
+          type="submit">Submit</v-btn>
       </v-card-actions>
     </v-form>
     <v-snackbar
@@ -145,7 +161,12 @@
 </template>
 <script>
   export default {
-    props: ['data'],
+    props: {
+      data: {
+        type: Object,
+        required: true
+      }
+    },
     data(){
       return {
         activator: null,

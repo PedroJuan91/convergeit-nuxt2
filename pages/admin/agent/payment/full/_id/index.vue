@@ -3,18 +3,32 @@
     <v-layout>
       <v-flex>
         <v-layout>
-          <v-btn icon @click="backhome" flat><v-icon large>keyboard_backspace</v-icon></v-btn>
+          <v-btn 
+            icon 
+            flat 
+            @click="backhome"><v-icon large>keyboard_backspace</v-icon></v-btn>
         </v-layout>
       </v-flex>
-      <v-flex xs12 sm5 md5 offset-xs0 offset-lg2>
+      <v-flex 
+        xs12 
+        sm5 
+        md5 
+        offset-xs0 
+        offset-lg2>
         <v-layout justify-end>
-          <v-text-field outline :label='label'  v-model='searchInput'></v-text-field>
+          <v-text-field 
+            :label="label" 
+            v-model="searchInput" 
+            outline/>
         </v-layout>
       </v-flex>
     </v-layout>
     <v-container>
-      <v-flex xs12 sm9 md9>
-        <listing :items='searching' />
+      <v-flex 
+        xs12 
+        sm9 
+        md9>
+        <listing :items="searching" />
       </v-flex>
     </v-container>
     <v-snackbar

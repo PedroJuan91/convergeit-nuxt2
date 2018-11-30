@@ -2,42 +2,62 @@
   <v-content>
     <v-container>
       <v-layout>
-        <v-flex xs12 sm6 offset-xs3>
+        <v-flex 
+          xs12 
+          sm6 
+          offset-xs3>
           <v-card>
             <v-card-title>
               <h2>Login Here!</h2>
             </v-card-title>
             <v-card-text>
               <v-container>
-                <v-form @submit.prevent="submit" ref="form" v-model="valid">
-                  <v-layout row wrap>
-                    <v-flex xs12 sm9 offset-xs2>
+                <v-form 
+                  ref="form" 
+                  v-model="valid" 
+                  @submit.prevent="submit">
+                  <v-layout 
+                    row 
+                    wrap>
+                    <v-flex 
+                      xs12 
+                      sm9 
+                      offset-xs2>
                       <v-text-field
-                      solo-inverted
-                      label="username"
-                      v-model="username"
-                      :rules="[rules.required, rules.email]"
-                      id="username">
-                      </v-text-field>
+                        id="username"
+                        v-model="username"
+                        :rules="[rules.required, rules.email]"
+                        solo-inverted
+                        label="username"/>
                     </v-flex>
                   </v-layout>
-                  <v-layout row wrap>
-                    <v-flex xs12 sm9 offset-xs2>
+                  <v-layout 
+                    row 
+                    wrap>
+                    <v-flex 
+                      xs12 
+                      sm9 
+                      offset-xs2>
 
                       <v-text-field
-                      solo-inverted
-                      label="password"
-                      v-model="password"
-                      type="password"
-                      :rules="[rules.required]"
-                      id="password">
-                      </v-text-field>
+                        id="password"
+                        v-model="password"
+                        :rules="[rules.required]"
+                        solo-inverted
+                        label="password"
+                        type="password"/>
                     </v-flex>
                   </v-layout>
-                  <v-layout row wrap>
-                    <v-spacer></v-spacer>
-                    <v-flex xs12 sm4 >
-                      <v-btn :disabled="!validIN" type="submit" >Login</v-btn>
+                  <v-layout 
+                    row 
+                    wrap>
+                    <v-spacer/>
+                    <v-flex 
+                      xs12 
+                      sm4 >
+                      <v-btn 
+                        :disabled="!validIN" 
+                        type="submit" >Login</v-btn>
                     </v-flex>
                   </v-layout>
                 </v-form>

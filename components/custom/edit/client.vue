@@ -1,55 +1,65 @@
 <template>
   <v-flex>
-    <v-form v-model="valid" ref="form" @submit.prevent="submit">
+    <v-form
+      ref="form"
+      v-model="valid"
+      @submit.prevent="submit">
       <v-text-field
-        maxLength='12'
-        v-model="cltname"
         id="cltname"
+        v-model="cltname"
+        :rules="[rules.required]"
+        max-length="12"
         value="hellow"
         solo-inverted
-        :rules="[rules.required]"
-      ></v-text-field>
+      />
 
       <v-text-field
-        v-model="cltaddress"
-        label="Client Address"
         id="cltaddress"
-        solo-inverted
+        v-model="cltaddress"
         :rules="[rules.required]"
-      ></v-text-field>
-
-      <v-text-field
-        v-model="cltemail"
-        label="Client Email"
-        id="cltemail"
+        label="Client Address"
         solo-inverted
-        :rules="[rules.required, rules.email]"
-      ></v-text-field>
+      />
 
       <v-text-field
-        v-model="cltphone"
-        label="Client Phone"
+        id="cltemail"
+        v-model="cltemail"
+        :rules="[rules.required, rules.email]"
+        label="Client Email"
+        solo-inverted
+      />
+
+      <v-text-field
         id="cltphone"
+        v-model="cltphone"
+        :rules="[rules.required, rules.limit]"
+        label="Client Phone"
         mask="####-#######"
         solo-inverted
-        :rules="[rules.required, rules.limit]"
-      ></v-text-field>
+      />
       <v-text-field
-      label="Client image url"
-      id="cltimg"
-      v-model="cltimg"
-      :rules="[rules.required]">
-      </v-text-field>
+        id="cltimg"
+        v-model="cltimg"
+        :rules="[rules.required]"
+        label="Client image url"/>
 
       <v-layout row>
-        <v-flex xs12 sm12 md12 offset-sm2>
-          <img :src="cltimg" height="150">
+        <v-flex
+          xs12
+          sm12
+          md12
+          offset-sm2>
+          <img
+            :src="cltimg"
+            height="150">
         </v-flex>
       </v-layout>
 
       <v-card-actions>
         <v-spacer />
-        <v-btn :disabled="!validIn" type="submit">Submit</v-btn>
+        <v-btn
+          :disabled="!validIn"
+          type="submit">Submit</v-btn>
       </v-card-actions>
     </v-form>
     <v-snackbar
@@ -70,27 +80,10 @@
 </template>
 <script>
 export default {
-  props: ['data'],
-  computed: {
-    validIn() {
-    return this.cltname !== '' &&
-           this.cltemail !== '' &&
-           this.cltaddress !== '' &&
-           this.cltphone !== '' &&
-           this.cltimg !== ''
-    },
-    submittableDateTime () {
-      const date = new Date(this.date)
-      if (typeof this.time === 'string') {
-        let hours = this.time.match(/^(\d+)/)[1]
-        const minutes = this.time.match(/:(\d+)/)[1]
-        date.setHours(hours)
-        date.setMinutes(minutes)
-      } else {
-        date.setHours(this.time.getHours())
-        date.setMinutes(this.time.getMinutes())
-      }
-      return date
+  props: {
+    data: {
+      type: Object,
+      required: true
     }
   },
   data(){
@@ -114,6 +107,28 @@ export default {
         required: value => !!value || 'Required.',
         limit: value=> value.length >= 11 || 'Must be a complete phone number'
       }
+    }
+  },
+  computed: {
+    validIn() {
+    return this.cltname !== '' &&
+           this.cltemail !== '' &&
+           this.cltaddress !== '' &&
+           this.cltphone !== '' &&
+           this.cltimg !== ''
+    },
+    submittableDateTime () {
+      const date = new Date(this.date)
+      if (typeof this.time === 'string') {
+        let hours = this.time.match(/^(\d+)/)[1]
+        const minutes = this.time.match(/:(\d+)/)[1]
+        date.setHours(hours)
+        date.setMinutes(minutes)
+      } else {
+        date.setHours(this.time.getHours())
+        date.setMinutes(this.time.getMinutes())
+      }
+      return date
     }
   },
   methods: {

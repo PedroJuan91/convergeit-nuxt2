@@ -5,23 +5,25 @@
         v-model="drawer"
         app
         temporary
-        >
+      >
         <v-list>
           <v-list-tile>
             <v-list-tile-title><span class="title">Main Menu</span> </v-list-tile-title>
           </v-list-tile>
-          <v-list-tile v-for="(item, index) in items" :key="index"
+          <v-list-tile 
+            v-for="(item, index) in items" 
+            :key="index"
+            :to="item.to"
             router
             ripple
-            :to="item.to"
           >
             <v-list-tile-action>
               <v-icon
-              >{{item.icon}}</v-icon>
+              >{{ item.icon }}</v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
               <v-list-tile-title
-              >{{item.title}}</v-list-tile-title>
+              >{{ item.title }}</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
           <v-divider />
@@ -32,18 +34,20 @@
             <v-list-tile-title><span class="title">  Ordering Status</span></v-list-tile-title>
           </v-list-tile>
 
-          <v-list-tile v-for="(item, index) in headerItems" :key="index"
+          <v-list-tile 
+            v-for="(item, index) in headerItems" 
+            :key="index"
+            :to="item.btnTo"
             router
             ripple
-            :to="item.btnTo"
           >
             <v-list-tile-action>
               <v-icon
-              >{{item.icon}}</v-icon>
+              >{{ item.icon }}</v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
               <v-list-tile-title
-              >{{item.btnName}}</v-list-tile-title>
+              >{{ item.btnName }}</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
           <v-divider />
@@ -51,8 +55,8 @@
 
         <v-list>
           <v-list-tile
-          @click="signout"
-          ripple
+            ripple
+            @click="signout"
           >
             <v-list-tile-action>
               <v-icon>work_off
@@ -66,10 +70,12 @@
         </v-list>
 
       </v-navigation-drawer>
-      <theHeader v-for="(itemed, index) of headerItems" :key="index"
-      :mainTitle="namedefault"
-      @toggle-drawer="drawer = !drawer"
-      :btns="headerItems"
+      <theHeader 
+        v-for="(itemed, index) of headerItems" 
+        :key="index"
+        :main-title="namedefault"
+        :btns="headerItems"
+        @toggle-drawer="drawer = !drawer"
       />
     </header>
     <v-content>

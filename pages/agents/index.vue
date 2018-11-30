@@ -1,60 +1,80 @@
 <template>
-<v-content>
+  <v-content>
     <v-container fluid>
-      <v-layout row solid>
+      <v-layout 
+        row 
+        solid>
         <v-toolbar dark>
           <v-toolbar-title>Clients</v-toolbar-title>
         </v-toolbar>
       </v-layout>
-      <v-flex my-4 xs12 md3 offset-xs2 v-if="clients < 1">
+      <v-flex 
+        v-if="clients < 1" 
+        my-4 
+        xs12 
+        md3 
+        offset-xs2>
         <h2>You have no Clients yet</h2>
       </v-flex>
-        <client-dash v-else
-        v-bind:items="listedClient"
-        />
+      <client-dash 
+        v-else
+        :items="listedClient"
+      />
       <v-flex>
-        <v-spacer> </v-spacer>
-        <v-btn :disabled="clients < 1" to="/agents/customer">
+        <v-spacer/>
+        <v-btn 
+          :disabled="clients < 1" 
+          to="/agents/customer">
           All Clients list
         </v-btn>
       </v-flex>
     </v-container>
 
     <v-container>
-      <v-layout row solid>
+      <v-layout 
+        row 
+        solid>
         <v-toolbar dark>
           <v-toolbar-title>Orders</v-toolbar-title>
         </v-toolbar>
       </v-layout>
 
-      <v-flex my-4  xs12 md5 offset-xs2 v-if="order < 1">
+      <v-flex 
+        v-if="order < 1" 
+        my-4 
+        xs12 
+        md5 
+        offset-xs2>
         <h2>You have not order for the client</h2>
       </v-flex>
-      <order-dash v-else
-      :items="listedOrder"
+      <order-dash 
+        v-else
+        :items="listedOrder"
       />
       <v-flex>
-        <v-spacer> </v-spacer>
-        <v-btn :disabled="order < 1" to="/agents/orders">
+        <v-spacer/>
+        <v-btn 
+          :disabled="order < 1" 
+          to="/agents/orders">
           All Order list
         </v-btn>
       </v-flex>
-    <v-snackbar
-      v-model="snackbar"
-      :timeout="timeout"
-      top
-    >
-      {{ text }}
-      <v-btn
-        dark
-        flat
-        @click="snackbar = false"
+      <v-snackbar
+        v-model="snackbar"
+        :timeout="timeout"
+        top
       >
-        Close
-      </v-btn>
-    </v-snackbar>
-  </v-container>
-</v-content>
+        {{ text }}
+        <v-btn
+          dark
+          flat
+          @click="snackbar = false"
+        >
+          Close
+        </v-btn>
+      </v-snackbar>
+    </v-container>
+  </v-content>
 </template>
 <script>
 import {mapState, mapGetters} from 'vuex'

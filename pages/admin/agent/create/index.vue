@@ -1,48 +1,53 @@
 <template>
   <v-content>
-    <v-layout row wrap>
-      <v-flex xs12 sm6 md5 offset-xs3>
+    <v-layout 
+      row 
+      wrap>
+      <v-flex 
+        xs12 
+        sm6 
+        md5 
+        offset-xs3>
         <v-card>
           <v-card-title>
             <h1>New Agent</h1>
           </v-card-title>
-          <v-form v-model="valid" ref="form" @submit.prevent="submit">
+          <v-form 
+            ref="form" 
+            v-model="valid" 
+            @submit.prevent="submit">
             <v-card-text>
               <v-text-field
-              label="Agent Firstname"
-              v-model="agtfname"
-              solo-inverted
-              :rules="[rules.required]"
-              id="agtfname"
-              >
-              </v-text-field>
+                id="agtfname"
+                v-model="agtfname"
+                :rules="[rules.required]"
+                label="Agent Firstname"
+                solo-inverted
+              />
               <v-text-field
-              label="Agent Lastname"
-              solo-inverted
-              v-model="agtlname"
-              id="agtlname"
-              :rules="[rules.required]">
-              </v-text-field>
+                id="agtlname"
+                v-model="agtlname"
+                :rules="[rules.required]"
+                label="Agent Lastname"
+                solo-inverted/>
               <v-text-field
-              label="Company Branch"
-              solo-inverted
-              v-model="agtbranch"
-              id="agtlbranch"
-              :rules="[rules.required]">
-              </v-text-field>
+                id="agtlbranch"
+                v-model="agtbranch"
+                :rules="[rules.required]"
+                label="Company Branch"
+                solo-inverted/>
               <v-text-field
-              label="Agent Email"
-              v-model="agtemail"
-              id="agtemail"
-              solo-inverted
-              :rules="[rules.required, rules.email]">
-              </v-text-field>
+                id="agtemail"
+                v-model="agtemail"
+                :rules="[rules.required, rules.email]"
+                label="Agent Email"
+                solo-inverted/>
             </v-card-text>
             <v-card-actions>
               <v-spacer />
               <v-btn
-              flat
-              type="submit">submit
+                flat
+                type="submit">submit
               </v-btn>
             </v-card-actions>
           </v-form>

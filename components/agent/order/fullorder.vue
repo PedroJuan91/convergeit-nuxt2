@@ -1,16 +1,19 @@
 <template>
   <v-content>
-    <v-card class="card" v-for="(item, index) in items" :key="index"
-    @click.native="getID(item.id)"
-    ripple>
+    <v-card 
+      v-for="(item, index) in items" 
+      :key="index" 
+      class="card"
+      ripple
+      @click.native="getID(item.id)">
       <v-card-title>
-       <h2>{{item.ordnameto}} </h2>
+        <h2>{{ item.ordnameto }} </h2>
       </v-card-title>
       <v-card-text>
-        <span class="caption grey--text">Order Date:</span> <span class="subheading"> {{$dateFilter(item.ordertime)}}</span> <br/>
-        <span class="caption grey--text">Quotation confired:</span> <span class="subheading">{{confirmation(item.confirmquotation)}}</span> <br/>
-        <span class="caption grey--text">Client paid:</span> <span class="subheading">{{confirmation(item.hasPaid)}}</span><br/>
-        <span class="caption grey--text">Order total price tag:</span> <span class="subheading">Php {{item.itemstotal}}.00</span><br/>
+        <span class="caption grey--text">Order Date:</span> <span class="subheading"> {{ $dateFilter(item.ordertime) }}</span> <br>
+        <span class="caption grey--text">Quotation confired:</span> <span class="subheading">{{ confirmation(item.confirmquotation) }}</span> <br>
+        <span class="caption grey--text">Client paid:</span> <span class="subheading">{{ confirmation(item.hasPaid) }}</span><br>
+        <span class="caption grey--text">Order total price tag:</span> <span class="subheading">Php {{ item.itemstotal }}.00</span><br>
       </v-card-text>
     </v-card>
   </v-content>

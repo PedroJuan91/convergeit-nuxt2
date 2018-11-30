@@ -1,86 +1,122 @@
 <template>
   <v-content>
-    <v-layout row mb-3>
-      <v-flex xs12 sm4 md4 mr-2>
+    <v-layout 
+      row 
+      mb-3>
+      <v-flex 
+        xs12 
+        sm4 
+        md4 
+        mr-2>
         <v-select
-        solo-inverted
-        label="Clients name"
-        :items="clientName"
-        item-text="cltname"
-        item-value="id"
-        return-object
-        v-model="clientOrder"
-        single-line>
-        </v-select>
+          :items="clientName"
+          v-model="clientOrder"
+          solo-inverted
+          label="Clients name"
+          item-text="cltname"
+          item-value="id"
+          return-object
+          single-line/>
       </v-flex>
       <v-spacer />
-      <v-btn flat :disabled="rules" ripple @click="onsubmit">Checkout<v-icon x-large>assignment_turned_in</v-icon></v-btn>
+      <v-btn 
+        :disabled="rules" 
+        flat 
+        ripple 
+        @click="onsubmit">Checkout<v-icon x-large>assignment_turned_in</v-icon></v-btn>
 
     </v-layout>
 
-        <v-img v-if='$vuetify.breakpoint.xsOnly' height='300px' width='320px' :src='clientOrder.cltimg'></v-img>
-        <v-layout v-if="!rules">
-          <v-flex>
-            <v-img v-if='!$vuetify.breakpoint.xsOnly' height='300px' width='320px' :src='clientOrder.cltimg'></v-img>
-          </v-flex>
-          <v-flex mx-2 xs12 sm8 md8 >
-            <v-list>
-              <v-list-tile>
-                <v-list-tile-avatar>
-                  <v-icon large>person</v-icon>
-                </v-list-tile-avatar>
-                <v-list-tile-title>{{clientOrder.cltname}}</v-list-tile-title>
-              </v-list-tile>
-              <v-list-tile>
-                <v-list-tile-avatar>
-                  <v-icon large>location_on</v-icon>
-                </v-list-tile-avatar>
-                <v-list-tile-title>{{clientOrder.cltaddress}}</v-list-tile-title>
-              </v-list-tile>
-              <v-list-tile>
-                <v-list-tile-avatar>
-                  <v-icon large>email</v-icon>
-                </v-list-tile-avatar>
-                <v-list-tile-title>{{clientOrder.cltemail}}</v-list-tile-title>
-              </v-list-tile>
-            </v-list>
-            <v-flex mt-2>
-              <v-list>
-                <v-list-tile>
-                  <v-list-tile-avatar>
-                    <v-icon>payments</v-icon>
-                  </v-list-tile-avatar>
-                  <v-list-tile-content>
-                    <span>Php {{total}}.00</span>
-                  </v-list-tile-content>
-                </v-list-tile>
-              </v-list>
-            </v-flex>
-          </v-flex>
-        </v-layout>
-    <v-layout row v-if="items >= 1">
+    <v-img 
+      v-if="$vuetify.breakpoint.xsOnly" 
+      :src="clientOrder.cltimg" 
+      height="300px" 
+      width="320px"/>
+    <v-layout v-if="!rules">
+      <v-flex>
+        <v-img 
+          v-if="!$vuetify.breakpoint.xsOnly" 
+          :src="clientOrder.cltimg" 
+          height="300px" 
+          width="320px"/>
+      </v-flex>
+      <v-flex 
+        mx-2 
+        xs12 
+        sm8 
+        md8 >
+        <v-list>
+          <v-list-tile>
+            <v-list-tile-avatar>
+              <v-icon large>person</v-icon>
+            </v-list-tile-avatar>
+            <v-list-tile-title>{{ clientOrder.cltname }}</v-list-tile-title>
+          </v-list-tile>
+          <v-list-tile>
+            <v-list-tile-avatar>
+              <v-icon large>location_on</v-icon>
+            </v-list-tile-avatar>
+            <v-list-tile-title>{{ clientOrder.cltaddress }}</v-list-tile-title>
+          </v-list-tile>
+          <v-list-tile>
+            <v-list-tile-avatar>
+              <v-icon large>email</v-icon>
+            </v-list-tile-avatar>
+            <v-list-tile-title>{{ clientOrder.cltemail }}</v-list-tile-title>
+          </v-list-tile>
+        </v-list>
+        <v-flex mt-2>
+          <v-list>
+            <v-list-tile>
+              <v-list-tile-avatar>
+                <v-icon>payments</v-icon>
+              </v-list-tile-avatar>
+              <v-list-tile-content>
+                <span>Php {{ total }}.00</span>
+              </v-list-tile-content>
+            </v-list-tile>
+          </v-list>
+        </v-flex>
+      </v-flex>
+    </v-layout>
+    <v-layout 
+      v-if="items >= 1" 
+      row>
       <v-flex>
         <v-layout fill-height>
-          <v-layout justify-center align-center>
+          <v-layout 
+            justify-center 
+            align-center>
             <span class="display-1 font-weight-black">Ordered Products</span>
           </v-layout>
         </v-layout>
       </v-flex>
-      <v-flex xs12 sm5 md5 offset-xs0 offset-lg2>
+      <v-flex 
+        xs12 
+        sm5 
+        md5 
+        offset-xs0 
+        offset-lg2>
         <v-layout justify-end>
-          <v-text-field outline :label='label'  v-model='searchInput'></v-text-field>
+          <v-text-field 
+            :label="label" 
+            v-model="searchInput" 
+            outline/>
         </v-layout>
       </v-flex>
     </v-layout>
-      <v-flex v-if="items >= 1">
-        <checkoutCounter :data='itemlist'
-         />
-      </v-flex>
-      <v-flex v-else mt-5>
-        <v-layout justify-center>
-          <h2>No Product Orders yet. Please click products at on shop menu</h2>
-        </v-layout>
-      </v-flex>
+    <v-flex v-if="items >= 1">
+      <checkoutCounter 
+        :data="itemlist"
+      />
+    </v-flex>
+    <v-flex 
+      v-else 
+      mt-5>
+      <v-layout justify-center>
+        <h2>No Product Orders yet. Please click products at on shop menu</h2>
+      </v-layout>
+    </v-flex>
     <v-snackbar
       v-model="snackbar"
       :timeout="timeout"

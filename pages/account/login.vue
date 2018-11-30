@@ -1,6 +1,6 @@
 <template>
   <v-content>
-      <loginCard />
+    <loginCard />
   </v-content>
 </template>
 <script>

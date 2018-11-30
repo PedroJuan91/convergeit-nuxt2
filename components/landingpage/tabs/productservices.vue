@@ -1,14 +1,19 @@
 <template>
   <v-content>
-    <v-layout v-for="(item, index) in items" :key="index">
+    <v-layout 
+      v-for="(item, index) in items" 
+      :key="index">
       <v-flex my-5>
         <v-hover>
           <v-card slot-scope="{hover}">
             <v-toolbar dark>
-              <v-toolbar-title>{{item.title}}</v-toolbar-title>
+              <v-toolbar-title>{{ item.title }}</v-toolbar-title>
             </v-toolbar>
             <v-responsive >
-              <v-img :aspect-ratio="3/2"  v-if='hover'  :src='item.image' />
+              <v-img 
+                v-if="hover"  
+                :aspect-ratio="3/2" 
+                :src="item.image" />
             </v-responsive>
           </v-card>
         </v-hover>
