@@ -190,7 +190,7 @@ export default {
         const root = await firebase.database().ref()
         const fullpayments = await root.child(`payments/${agent}/full`).once('value')
         const fullpaymentsJSON = await fullpayments.toJSON()
-        //console.log(fullpaymentsJSON)
+        console.log(fullpaymentsJSON)
         const fullpaylist = []
         for (let i in fullpaymentsJSON){
           fullpaylist.push({...fullpaymentsJSON[i], id: i})
@@ -199,7 +199,7 @@ export default {
         const halfpayments = await root.child(`payments/${agent}/half`).once('value')
         const halfpaymentsJSON = await halfpayments.toJSON()
         const halfpaylist = []
-        //console.log(halfpaymentsJSON)
+        console.log(halfpaymentsJSON)
         for(let o in halfpaymentsJSON){
           halfpaylist.push({...halfpaymentsJSON[o], id: o})
         }
