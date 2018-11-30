@@ -8,18 +8,16 @@
     <v-toolbar-side-icon @click.stop="$emit('toggle-drawer')"/>
     <v-toolbar-title v-text="mainTitle"/>
     <v-spacer/>
-    <span
-      v-if="!$vuetify.breakpoint.xsOnly" >
-      <v-toolbar-items
+    <v-toolbar-items
+      v-if="!$vuetify.breakpoint.xsOnly">
+      <v-btn
         v-for="btn in btns"
-        :key="btn.id">
-        <v-btn
-          :to="btn.btnTo"
-          flat
-        >{{ btn.btnName }}
-        </v-btn>
-      </v-toolbar-items>
-    </span>
+        :to="btn.btnTo"
+        :key="btn.id"
+        flat
+      >{{ btn.btnName }}
+      </v-btn>
+    </v-toolbar-items>
   </v-toolbar>
 </template>
 <script>
@@ -27,6 +25,10 @@ export default {
   props: {
     mainTitle: {
       type: String,
+      required: true
+    },
+    btns: {
+      type: Object,
       required: true
     }
   },
