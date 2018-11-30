@@ -44,17 +44,13 @@
                   <v-btn @click="descrip = !descrip">show Product details </v-btn>
                 </v-list-tile-action>
               </v-list-tile>
-              <v-flex v-if="descrip">
-                <v-list-tile
-                v-for="itemed in item.proddesc"
-                :key="itemed.text">
-                  <v-list-tile-content>
-                    <ul>
-                      <v-list-tile-sub-title><span class="black--text">{{itemed.text}}</span></v-list-tile-sub-title>
-                    </ul>
-                  </v-list-tile-content>
-                </v-list-tile>
-              </v-flex>
+              <v-list-tile  v-if="descrip" v-for="itemed in item.proddesc" :key="itemed.text">
+                <v-list-tile-content>
+                  <ul>
+                    <v-list-tile-sub-title><span class="black--text">{{itemed.text}}</span></v-list-tile-sub-title>
+                  </ul>
+                </v-list-tile-content>
+              </v-list-tile>
             </v-list-group>
           </v-list>
         </v-card>

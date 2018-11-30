@@ -14,12 +14,7 @@
 </template>
 <script>
   export default {
-    props: {
-      data: {
-        type: Array,
-        required: true
-      }
-    },
+    props: ['data'],
     methods: {
       addtocart(id, price, desc, name) {
         return this.$store.dispatch('order/editcart', {id: id, prodprice: price, proddesc: desc, prodname: name})

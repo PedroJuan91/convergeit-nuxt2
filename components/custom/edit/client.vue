@@ -70,12 +70,7 @@
 </template>
 <script>
 export default {
-  props: {
-    data: {
-      type: Object,
-      required: true
-    }
-  },
+  props: ['data'],
   computed: {
     validIn() {
     return this.cltname !== '' &&
