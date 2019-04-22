@@ -1,0 +1,19 @@
+<template>
+  <v-layout
+    row
+    wrap>
+    <v-flex>
+      <v-list>
+        <v-list-tile>
+          <v-list-content>
+            <v-list-tile-title>
+              this is a board for message
+            </v-list-tile-title>
+          </v-list-content>
+        </v-list-tile>
+      </v-list>
+    </v-flex>
+  </v-layout>
+</template>
+<script>
+</script>
