@@ -1,29 +1,29 @@
 <template>
   <v-content>
     <v-container fluid>
-      <v-layout 
-        row 
+      <v-layout
+        row
         solid>
         <v-toolbar dark>
           <v-toolbar-title>Clients</v-toolbar-title>
         </v-toolbar>
       </v-layout>
-      <v-flex 
-        v-if="clients < 1" 
-        my-4 
-        xs12 
+      <v-flex
+        v-if="clients < 1"
+        my-4
+        xs12
         md3 
         offset-xs2>
         <h2>You have no Clients yet</h2>
       </v-flex>
-      <client-dash 
+      <client-dash
         v-else
         :items="listedClient"
       />
       <v-flex>
         <v-spacer/>
-        <v-btn 
-          :disabled="clients < 1" 
+        <v-btn
+          :disabled="clients < 1"
           to="/agents/customer">
           All Clients list
         </v-btn>
@@ -31,30 +31,30 @@
     </v-container>
 
     <v-container>
-      <v-layout 
-        row 
+      <v-layout
+        row
         solid>
         <v-toolbar dark>
           <v-toolbar-title>Orders</v-toolbar-title>
         </v-toolbar>
       </v-layout>
 
-      <v-flex 
-        v-if="order < 1" 
-        my-4 
-        xs12 
-        md5 
+      <v-flex
+        v-if="order < 1"
+        my-4
+        xs12
+        md5
         offset-xs2>
         <h2>You have not order for the client</h2>
       </v-flex>
-      <order-dash 
+      <order-dash
         v-else
         :items="listedOrder"
       />
       <v-flex>
         <v-spacer/>
-        <v-btn 
-          :disabled="order < 1" 
+        <v-btn
+          :disabled="order < 1"
           to="/agents/orders">
           All Order list
         </v-btn>
