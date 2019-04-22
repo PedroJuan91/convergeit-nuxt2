@@ -6,27 +6,29 @@
       xs12
       sm7
       md6 >
-      <v-list>
-        <v-list-tile
-          v-for="(item, index) in items"
-          :key="index"
-          avatar
-          ripple
-          @click.native="originTem(item.id)"
-        >
-          <v-list-tile-avatar>
-            <v-img
-              :aspect-ratio="16/9"
-              :src="item.cltimg" />
-          </v-list-tile-avatar>
+      <v-list
+        v-for="(item, index) in items"
+        :key="index">
+        <v-flex py-2>
+          <v-list-tile
+            avatar
+            ripple
+            @click.native="originTem(item.id)"
+          >
+            <v-list-tile-avatar>
+              <v-img
+                :aspect-ratio="16/9"
+                :src="item.cltimg" />
+            </v-list-tile-avatar>
+            <v-flex mx-3>
+              <v-list-tile-content>
+                <v-list-tile-title>{{ item.cltname }} </v-list-tile-title>
+                <v-list-tile-sub-title> <v-icon>email</v-icon>{{ item.cltemail }}</v-list-tile-sub-title>
+              </v-list-tile-content>
+            </v-flex>
+          </v-list-tile>
 
-          <v-list-tile-content>
-            <v-list-tile-title>{{ item.cltname }} </v-list-tile-title>
-
-            <v-list-tile-sub-title> <v-icon>email</v-icon>{{ item.cltemail }}</v-list-tile-sub-title>
-          </v-list-tile-content>
-
-        </v-list-tile>
+        </v-flex>
         <v-divider
           v-if="index + 1 < items.length"
           :key="index"
