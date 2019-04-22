@@ -4,27 +4,29 @@
     wrap>
     <v-flex
       xs12
-      sm10
-      md9 >
-      <v-list
-        v-for="(item, index) in items"
-        :key="index" >
-        <v-flex py-2>
-          <v-list-tile
-            avatar
-            ripple
-          >
-            <v-list-tile-avatar>
-              <v-icon>client</v-icon>
-            </v-list-tile-avatar>
-            <v-flex my-3>
-              <v-list-tile-content>
-                <v-list-tile-title>{{ item.cltname }} </v-list-tile-title>
-                <v-list-tile-sub-title>Address: {{ item.cltaddress }} <br > Email Address: {{ item.cltemail }}</v-list-tile-sub-title>
-              </v-list-tile-content>
-            </v-flex>
-          </v-list-tile>
-        </v-flex>
+      sm7
+      md6 >
+      <v-list>
+        <v-list-tile
+          v-for="(item, index) in items"
+          :key="index"
+          avatar
+          ripple
+          @click.native="originTem(item.id)"
+        >
+          <v-list-tile-avatar>
+            <v-img
+              :aspect-ratio="16/9"
+              :src="item.cltimg" />
+          </v-list-tile-avatar>
+
+          <v-list-tile-content>
+            <v-list-tile-title>{{ item.cltname }} </v-list-tile-title>
+
+            <v-list-tile-sub-title> <v-icon>email</v-icon>{{ item.cltemail }}</v-list-tile-sub-title>
+          </v-list-tile-content>
+
+        </v-list-tile>
         <v-divider
           v-if="index + 1 < items.length"
           :key="index"
@@ -47,6 +49,11 @@
       return {
       }
     },
+    methods:{
+      originTem(id){
+        return this.$router.push(`/agents/customer/${id}`)
+      }
+    }
   }
 
 </script>

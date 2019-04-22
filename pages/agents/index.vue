@@ -4,15 +4,20 @@
       <v-layout
         row
         solid>
-        <v-toolbar dark>
-          <v-toolbar-title>Clients</v-toolbar-title>
-        </v-toolbar>
+        <v-flex
+          xs12
+          sm6
+          md6>
+          <v-toolbar dark>
+            <v-toolbar-title>Clients</v-toolbar-title>
+          </v-toolbar>
+        </v-flex>
       </v-layout>
       <v-flex
         v-if="clients < 1"
         my-4
         xs12
-        md3 
+        md3
         offset-xs2>
         <h2>You have no Clients yet</h2>
       </v-flex>
@@ -34,9 +39,14 @@
       <v-layout
         row
         solid>
-        <v-toolbar dark>
-          <v-toolbar-title>Orders</v-toolbar-title>
-        </v-toolbar>
+        <v-flex
+          xs12
+          sm6
+          md6>
+          <v-toolbar dark>
+            <v-toolbar-title>Orders</v-toolbar-title>
+          </v-toolbar>
+        </v-flex>
       </v-layout>
 
       <v-flex
