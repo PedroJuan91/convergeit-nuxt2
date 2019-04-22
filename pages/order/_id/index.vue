@@ -1,12 +1,12 @@
 <template>
   <v-content>
     <!-- <h1>hello orders {{$route.params.id}}</h1> -->
-    <v-layout 
-      row 
+    <v-layout
+      row
       wrap>
-      <v-flex 
-        xs12 
-        sm12 
+      <v-flex
+        xs12
+        sm12
         md4>
         <v-img
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCKPLjbKDK11wrS1VbzXaempsJwhRoMOgMZIJZHuinC9zrKmFM"
@@ -14,18 +14,18 @@
           width="400px"
         />
       </v-flex>
-      <v-flex 
-        xs12 
-        sm12 
-        md6 
+      <v-flex
+        xs12
+        sm12
+        md6
         offset-md2>
         <v-spacer />
         <v-layout row>
-          <span 
-            v-if="data.confirmquotation" 
+          <span
+            v-if="data.confirmquotation"
             class="display-3">Billing Statement</span>
-          <span 
-            v-else 
+          <span
+            v-else
             class="display-3">Quotation Statement</span>
         </v-layout>
         <span class="body-1  grey--text">Client name: </span><span class="body-2">{{ data.ordnameto }}</span><br >
@@ -33,25 +33,25 @@
         <span class="body-1 grey--text">Email: </span><span class="body-2"> {{ data.ordsend }}</span><br >
       </v-flex>
     </v-layout>
-    <v-layout 
-      row 
-      wrap 
+    <v-layout
+      row
+      wrap
       my-3>
-      <v-flex 
-        xs12 
-        sm12 
+      <v-flex
+        xs12
+        sm12
         md12 >
         <v-card dark>
           <v-card-actions>
             <v-layout row>
               <span class="display-1">Items</span>
               <v-spacer />
-              <v-btn 
-                flat 
-                @click="itemed = !itemed"><span 
-                  v-if="!itemed" 
-                  class="title">show items</span><span 
-                    v-else 
+              <v-btn
+                flat
+                @click="itemed = !itemed"><span
+                  v-if="!itemed"
+                  class="title">show items</span><span
+                    v-else
                     class="title">collapse items</span> </v-btn>
             </v-layout>
           </v-card-actions>
@@ -61,12 +61,12 @@
         </v-container>
       </v-flex>
     </v-layout>
-    <v-layout 
-      row 
+    <v-layout
+      row
       wrap>
-      <v-flex 
-        xs12 
-        sm12 
+      <v-flex
+        xs12
+        sm12
         md12>
         <v-card dark>
           <v-card-actions>
@@ -76,13 +76,13 @@
           </v-card-actions>
         </v-card>
         <v-container>
-          <v-layout 
-            row 
+          <v-layout
+            row
             wrap>
-            <v-flex 
-              xs12 
-              sm12 
-              md3 
+            <v-flex
+              xs12
+              sm12
+              md3
               my-5>
               <v-card>
                 <v-card-title>
@@ -93,10 +93,10 @@
                 </v-card-text>
               </v-card>
             </v-flex>
-            <v-flex 
-              xs12 
-              sm12 
-              md6 
+            <v-flex
+              xs12
+              sm12
+              md6
               mx-3>
               <v-card v-if="!data.confirmquotation">
                 <v-form @submit.prevent="toSubmit">
@@ -113,34 +113,36 @@
                     </v-layout>
                   </v-card-title>
                   <v-card-actions>
-                    <v-btn 
-                      :disabled="!termsagreement" 
+                    <v-btn
+                      :disabled="!termsagreement"
                       type="submit">approve quotation
                     </v-btn>
+                    <v-spacer/>
+                    <v-btn>download <v-icon>picture_as_pdf</v-icon></v-btn>
                   </v-card-actions>
                 </v-form>
               </v-card>
               <v-card v-else-if="!data.hasPaid">
                 <v-card-title>
-                  <v-layout 
-                    row 
+                  <v-layout
+                    row
                     justify-center>
-                    <span 
-                      mt-3 
+                    <span
+                      mt-3
                       class="display-1">Payments</span>
                   </v-layout>
                 </v-card-title>
                 <v-card-text>
                   <v-layout row>
-                    <v-flex 
-                      xs6 
-                      sm6 
-                      md8 
+                    <v-flex
+                      xs6
+                      sm6
+                      md8
                       my-4>
                       <v-form @submit.prevent="payment">
                         <v-radio-group v-model="pay">
-                          <v-radio 
-                            v-for="(item, index) in labels" 
+                          <v-radio
+                            v-for="(item, index) in labels"
                             :key="index"
                             :label="`I want to pay ${item.label}`"
                             :value="item.val"
@@ -154,14 +156,14 @@
                         </v-radio-group>
                       </v-form>
                     </v-flex>
-                    <v-flex 
-                      xs6 
-                      sm6 
+                    <v-flex
+                      xs6
+                      sm6
                       md6>
-                      <v-layout 
-                        row 
-                        justify-center><span 
-                          class="headline" 
+                      <v-layout
+                        row
+                        justify-center><span
+                          class="headline"
                           flat>Disclaimer!!</span> </v-layout>
                       <span class="subheading">
                         Hello World!!<br>
@@ -176,9 +178,9 @@
                 <v-card-title><v-layout justify-center><span class="headline"> Confirmed Payment</span></v-layout></v-card-title>
                 <v-card-content>
                   <v-layout>
-                    <v-flex 
-                      xs6 
-                      sm6 
+                    <v-flex
+                      xs6
+                      sm6
                       md6>
                       <v-flex mb-3>
                         <v-list>
@@ -196,9 +198,9 @@
                         </v-list-tile>
                       </v-list>
                     </v-flex>
-                    <v-flex 
-                      xs6 
-                      sm6 
+                    <v-flex
+                      xs6
+                      sm6
                       md6>
                       <v-layout justify-center><span class="title">Disclaimer</span> </v-layout>
                       <span class="subheading">
@@ -319,6 +321,9 @@ export default {
     return {order : ordno}
   },
   methods: {
+    convertPDF(){
+      
+    },
     halfpay(){
       const payment = this.data.itemstotal / 2
       const route = this.$route.params.id
