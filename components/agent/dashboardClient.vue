@@ -2,10 +2,7 @@
   <v-layout
     row
     wrap>
-    <v-flex
-      xs12
-      sm7
-      md6 >
+    <v-flex>
       <v-list
         v-for="(item, index) in items"
         :key="index">
