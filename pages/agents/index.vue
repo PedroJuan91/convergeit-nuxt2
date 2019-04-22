@@ -12,19 +12,43 @@
             <v-toolbar-title>Clients</v-toolbar-title>
           </v-toolbar>
         </v-flex>
+        <v-flex
+          px-5
+          shrink>
+          <v-toolbar dark>
+            <v-toolbar-title>Message Board</v-toolbar-title>
+          </v-toolbar>
+        </v-flex>
       </v-layout>
-      <v-flex
-        v-if="clients < 1"
-        my-4
-        xs12
-        md3
-        offset-xs2>
-        <h2>You have no Clients yet</h2>
-      </v-flex>
-      <client-dash
-        v-else
-        :items="listedClient"
-      />
+      <v-layout
+        row
+        wrap>
+        <v-flex
+          v-if="clients < 1"
+          my-4
+          xs12
+          md3
+          offset-xs2>
+          <h2>You have no Clients yet</h2>
+        </v-flex>
+        <v-flex
+          v-else
+          xs12
+          sm7
+          md6>
+          <client-dash
+            :items="listedClient"
+          />
+        </v-flex>
+        <v-flex
+          px-5
+          xs12
+          sm6
+          md6>
+          <mssgbrd />
+        </v-flex>
+      </v-layout>
+
       <v-flex>
         <v-spacer/>
         <v-btn
@@ -48,7 +72,6 @@
           </v-toolbar>
         </v-flex>
       </v-layout>
-
       <v-flex
         v-if="order < 1"
         my-4
@@ -90,10 +113,12 @@
 import {mapState, mapGetters} from 'vuex'
 import clientDash from '@/components/agent/dashboardClient'
 import orderDash from '@/components/agent/dashboardOrder'
+import mssgbrd from '@/components/agent/mssg-brd-plate'
 export default {
   components: {
     clientDash,
-    orderDash
+    orderDash,
+    mssgbrd
   },
   data() {
     return {
