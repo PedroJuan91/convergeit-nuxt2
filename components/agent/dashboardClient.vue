@@ -1,14 +1,13 @@
 <template>
-  <v-layout 
-    row 
+  <v-layout
+    row
     wrap>
-    <v-flex 
-      xs12 
-      sm10 
-      md9 
-      offset-xs1>
-      <v-list 
-        v-for="(item, index) in items" 
+    <v-flex
+      xs12
+      sm10
+      md9 >
+      <v-list
+        v-for="(item, index) in items"
         :key="index" >
         <v-flex py-2>
           <v-list-tile
