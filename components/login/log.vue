@@ -1,27 +1,36 @@
 <template>
   <v-content>
+    <bann />
     <v-container>
       <v-layout>
-        <v-flex 
-          xs12 
-          sm6 
+        <v-flex
+          xs12
+          sm6
           offset-xs3>
-          <v-card>
-            <v-card-title>
-              <h2>Login Here!</h2>
-            </v-card-title>
+          <v-card dark>
+            <v-layout row >
+              <v-flex
+                xs12
+                sm12
+                md7
+                offset-xs1>
+                <v-card-title>
+                  <h1>Agent Login</h1>
+                </v-card-title>
+              </v-flex>
+            </v-layout>
             <v-card-text>
               <v-container>
-                <v-form 
-                  ref="form" 
-                  v-model="valid" 
+                <v-form
+                  ref="form"
+                  v-model="valid"
                   @submit.prevent="submit">
-                  <v-layout 
-                    row 
+                  <v-layout
+                    row
                     wrap>
-                    <v-flex 
-                      xs12 
-                      sm9 
+                    <v-flex
+                      xs12
+                      sm9
                       offset-xs2>
                       <v-text-field
                         id="username"
@@ -31,12 +40,12 @@
                         label="username"/>
                     </v-flex>
                   </v-layout>
-                  <v-layout 
-                    row 
+                  <v-layout
+                    row
                     wrap>
-                    <v-flex 
-                      xs12 
-                      sm9 
+                    <v-flex
+                      xs12
+                      sm9
                       offset-xs2>
 
                       <v-text-field
@@ -48,15 +57,15 @@
                         type="password"/>
                     </v-flex>
                   </v-layout>
-                  <v-layout 
-                    row 
+                  <v-layout
+                    row
                     wrap>
                     <v-spacer/>
-                    <v-flex 
-                      xs12 
+                    <v-flex
+                      xs12
                       sm4 >
-                      <v-btn 
-                        :disabled="!validIN" 
+                      <v-btn
+                        :disabled="!validIN"
                         type="submit" >Login</v-btn>
                     </v-flex>
                   </v-layout>
@@ -84,8 +93,12 @@
   </v-content>
 </template>
 <script>
+import bann from '@/components/signatures/banner-cen'
 
   export default {
+    components:{
+      bann
+    },
     data(){
       return {
         password: '',
