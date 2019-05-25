@@ -1,5 +1,4 @@
 import firebase from 'firebase'
-import pdfjs from 'jspdf'
 export default {
   namespaced: true,
   state: {
