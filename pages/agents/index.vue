@@ -6,17 +6,10 @@
         solid>
         <v-flex
           xs12
-          sm6
-          md6>
+          sm7
+          md7>
           <v-toolbar dark>
             <v-toolbar-title>Clients</v-toolbar-title>
-          </v-toolbar>
-        </v-flex>
-        <v-flex
-          px-5
-          shrink>
-          <v-toolbar dark>
-            <v-toolbar-title>Message Board</v-toolbar-title>
           </v-toolbar>
         </v-flex>
       </v-layout>
@@ -40,13 +33,6 @@
             :items="listedClient"
           />
         </v-flex>
-        <v-flex
-          px-5
-          xs12
-          sm6
-          md6>
-          <mssgbrd />
-        </v-flex>
       </v-layout>
 
       <v-flex>
@@ -65,8 +51,8 @@
         solid>
         <v-flex
           xs12
-          sm6
-          md6>
+          sm7
+          md7>
           <v-toolbar dark>
             <v-toolbar-title>Orders</v-toolbar-title>
           </v-toolbar>
