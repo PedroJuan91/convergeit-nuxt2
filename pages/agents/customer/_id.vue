@@ -80,25 +80,12 @@
 <script>
 import {mapState, mapGetters} from 'vuex'
 export default {
+  layout: 'agentCustomer',
   computed: {
     clientProf(){
       return this.$store.getters.profileClient(this.$route.params.id)
     }
   },
-  created() {
-    this.$store.dispatch('cltList', this.$route.params.id)
-    .catch(e => {
-      if(e.code == 408){
-        this.text = e.message
-        this.snackbar = true
-      }else {
-        this.text = e.message
-        this.snackbar= true
-      }
-      this.$router.push('/public/vendor.bundle.00f8a7a6911fb6e55d16.js')
-      })
-  },
-  layout: 'agentCustomer',
   methods: {
     editMe(val){
       return this.$router.push('/agents/customer/edit/' + val)
