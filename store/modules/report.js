@@ -7,7 +7,7 @@ export default {
   getters: {
     filterdate(state){
       return state.perClient.sort((dateA, dateB) => {
-        return
+        return dateA.orddate < dateB.orddate
       })
     }
   },
