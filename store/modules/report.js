@@ -30,7 +30,7 @@ export default {
             }
           }
         })
-        console.log(loads)
+        commit('perClt', loads)
       }
       return getData().catch(e => console.log('error on getCltOrder', e))
     },

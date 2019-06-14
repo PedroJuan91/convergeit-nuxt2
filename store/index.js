@@ -7,6 +7,7 @@ import client from './modules/client'
 import render from './modules/rendering'
 import admin from './modules/admin'
 import edit from './modules/edits'
+import report from './modules/report'
 
 
 function createNewAccount (user, account) {
@@ -21,7 +22,8 @@ const createVuex = () => {
       client,
       render,
       admin,
-      edit
+      edit,
+      report
     },
     getters: {
       agentKey(state) {
@@ -135,6 +137,12 @@ const createVuex = () => {
           await dispatch('render/projectinfo'),
           await dispatch('render/projectpayment'),
           await dispatch('render/halfFullpayment')
+        }
+        return load()
+      },
+      loadClt({commit, dispatch}, payload){
+        async function load(){
+          await dispatch('report/getCltOrder', payload)
         }
         return load()
       }

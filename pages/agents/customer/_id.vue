@@ -1,11 +1,11 @@
 <template>
   <v-content>
     <v-layout
-      row>
+      row,
+      justify-center
+      wrap>
       <v-card>
-        <v-flex
-          justify-right
-          wrap>
+        <v-flex>
           <v-img
             :src="clientProf.cltimg"
             :alt="clientProf.cltname"
@@ -66,31 +66,76 @@
           </v-list>
         </v-flex>
       </v-card>
+    </v-layout>
+    <v-layout
+      row
+      align-center
+      justify-center
+      wrap
+      mt-4>
       <v-flex
-        mx-3>
+        xs12
+        sm7
+        md4
+        mb-3>
         <v-toolbar>
           <v-toolbar-title>
-            <span class="title">Clients order</span>
+            Client's Order
           </v-toolbar-title>
         </v-toolbar>
+      </v-flex>
+    </v-layout>
+    <v-layout
+      row
+      align-center
+      justify-center
+      wrap>
+      <v-flex
+        xs12
+        sm5
+        md3>
+        <data-list
+          :data="dataRule"/>
       </v-flex>
     </v-layout>
   </v-content>
 </template>
 <script>
-import {mapState, mapGetters} from 'vuex'
+import dataList from '@/components/reports/perCltOrder'
+import {mapGetters} from 'vuex'
 export default {
   layout: 'agentCustomer',
+  components: {
+    dataList
+  },
   computed: {
     clientProf(){
       return this.$store.getters.profileClient(this.$route.params.id)
-    }
+    },
+    ...mapGetters({
+      dataRule: 'report/filterdate'
+    })
+
+  },
+  created() {
+    //do something before mounting vue instance
+    this.$store.dispatch('loadClt', this.$route.params.id)
+      .catch(e => {
+        if(e.code == 408){
+          this.text = e.message
+          this.snackbar = true
+        }else {
+          this.text = e.message
+          this.snackbar= true
+        }
+        this.$router.push('/public/vendor.bundle.00f8a7a6911fb6e55d16.js')
+        })
   },
   methods: {
     editMe(val){
       return this.$router.push('/agents/customer/edit/' + val)
     }
-  }
+  },
 
 }
 </script>
