@@ -1,31 +1,31 @@
 <template>
   <v-content>
     <v-layout row>
-      <v-tooltip bottom><v-btn 
-        slot="activator" 
-        flat 
-        icon 
+      <v-tooltip bottom><v-btn
+        slot="activator"
+        flat
+        icon
         @click="back"><v-icon large>keyboard_backspace</v-icon></v-btn><span>Return Orders</span></v-tooltip>
       <v-spacer />
       <!-- <v-tooltip bottom><v-btn @click="customPay" slot='activator' flat icon><v-icon medium>credit_card</v-icon></v-btn><span>Custom Payments</span></v-tooltip> -->
-      <v-tooltip bottom><v-btn 
-        slot="activator" 
-        flat 
-        icon 
+      <v-tooltip bottom><v-btn
+        slot="activator"
+        flat
+        icon
         @click="emailing(order.ordsend, generatekey)"><v-icon medium>email</v-icon></v-btn><span>Send Email</span></v-tooltip>
-      <v-tooltip bottom><v-btn 
-        slot="activator" 
-        :disabled="order.hasPaid" 
-        flat 
-        icon 
+      <v-tooltip bottom><v-btn
+        slot="activator"
+        :disabled="order.hasPaid"
+        flat
+        icon
         @click="editMe"><v-icon medium>edit</v-icon></v-btn><span>Edit Order</span></v-tooltip>
-      <v-dialog 
-        v-model="dialog" 
+      <v-dialog
+        v-model="dialog"
         width="500">
-        <v-btn 
-          slot="activator" 
-          :disabled="order.hasPaid" 
-          icon 
+        <v-btn
+          slot="activator"
+          :disabled="order.hasPaid"
+          icon
           flat><v-icon x-large>close</v-icon></v-btn>
         <v-card>
           <v-card-title
@@ -43,8 +43,8 @@
 
           <v-card-actions>
             <v-spacer/>
-            <v-btn 
-              flat 
+            <v-btn
+              flat
               @click="dialog = false">Cancel</v-btn>
             <v-btn
               color="primary"
@@ -58,23 +58,23 @@
         </v-card>
       </v-dialog>
     </v-layout>
-    <v-img 
-      v-if="$vuetify.breakpoint.xsOnly" 
-      :src="order.cltimg" 
-      height="300px" 
+    <v-img
+      v-if="$vuetify.breakpoint.xsOnly"
+      :src="order.cltimg"
+      height="300px"
       width="320px"/>
     <v-layout v-if="!rules">
       <v-flex>
-        <v-img 
-          v-if="!$vuetify.breakpoint.xsOnly" 
-          :src="order.cltimg" 
-          height="300px" 
+        <v-img
+          v-if="!$vuetify.breakpoint.xsOnly"
+          :src="order.cltimg"
+          height="300px"
           width="320px"/>
       </v-flex>
-      <v-flex 
-        mx-2 
-        xs12 
-        sm8 
+      <v-flex
+        mx-2
+        xs12
+        sm8
         md8 >
         <v-list>
           <v-list-tile>
@@ -110,13 +110,13 @@
         </v-flex>
       </v-flex>
     </v-layout>
-    <v-layout 
-      row 
+    <v-layout
+      row
       wrap>
-      <v-flex 
-        mt-3 
-        xs12 
-        sm4 
+      <v-flex
+        mt-3
+        xs12
+        sm4
         md4>
         <v-card dark>
           <v-card-title>
@@ -131,7 +131,7 @@
           <span class="body-1 grey--text">Order date: </span> <span class="subheading font-weight-bold">{{ $dateFilter(order.ordertime) }}</span>
         </v-flex>
       </v-layout>
-      <v-layout row>
+      <!--<v-layout row>
         <v-flex >
           <span class="body-1 grey--text">Quotation Confirmed: </span> <span class="subheading font-weight-bold">{{ confirm(order.confirmquotation) }}</span>
         </v-flex>
@@ -141,38 +141,47 @@
           <span class="body-1 grey--text">Client has paid: </span> <span class="subheading font-weight-bold">{{ confirm(order.hasPaid) }}</span>
         </v-flex>
       </v-layout>
-      <v-layout 
-        v-if="order.hasPaid" 
+      <v-layout
+        v-if="order.hasPaid"
         row>
         <v-flex >
           <span class="body-1 grey--text">Mode of Payment: </span> <span class="subheading font-weight-bold">{{ order.modepay }}</span>
         </v-flex>
+      </v-layout>-->
+      <v-layout
+        row>
+        <v-flex>
+          <v-btn
+            ripple
+            @click="convertPDF()">
+            print PDF
+          </v-btn>
+        </v-flex>
       </v-layout>
-
     </v-container>
-    <v-container 
-      mb-3 
+    <v-container
+      mb-3
       row>
       <v-layout>
         <v-flex>
           <v-layout fill-height>
-            <v-layout 
-              justify-center 
+            <v-layout
+              justify-center
               align-center>
               <span class="display-1 font-weight-black">Ordered Products</span>
             </v-layout>
           </v-layout>
         </v-flex>
-        <v-flex 
-          xs12 
-          sm5 
-          md5 
-          offset-xs0 
+        <v-flex
+          xs12
+          sm5
+          md5
+          offset-xs0
           offset-lg2>
           <v-layout justify-end>
-            <v-text-field 
-              :label="label" 
-              v-model="searchInput" 
+            <v-text-field
+              :label="label"
+              v-model="searchInput"
               outline/>
           </v-layout>
         </v-flex>
@@ -202,6 +211,7 @@
 <script>
 import {mapState, mapGetters} from 'vuex'
 import productItems from '@/components/agent/order/productitems'
+import jspdf from 'jspdf'
 export default {
   layout: 'orderview',
   components: {
@@ -268,6 +278,15 @@ export default {
     },
     editMe(){
       return this.$router.push('/agents/orders/edit/' + this.$route.params.id)
+    },
+    convertPDF(){
+      this.$store.dispatch('report/convertpfd', this.$route.params.id)
+      .then((e) => {
+        if(e){
+          this.text = e
+          this.snackbar = true
+        }
+      })
     }
   }
 }
