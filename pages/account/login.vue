@@ -1,14 +1,12 @@
 <template>
-  <v-content>
-    <loginCard />
-  </v-content>
+  <v-content> <loginCard /> </v-content>
 </template>
 <script>
-import loginCard from '@/components/login/log'
+import loginCard from "@/components/login/log";
 export default {
-  layout: 'start',
+  layout: "start",
   components: {
     loginCard
   }
-}
+};
 </script>
