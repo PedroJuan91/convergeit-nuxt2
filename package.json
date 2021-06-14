@@ -27,7 +27,7 @@
     "js-cookie": "^2.2.0",
     "jspdf": "^1.5.3",
     "nodemon": "^1.11.0",
-    "nuxt": "^2.0.0",
+    "nuxt": "^2.15.6",
     "paypal-rest-sdk": "^1.8.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
